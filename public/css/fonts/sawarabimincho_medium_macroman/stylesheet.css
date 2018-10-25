@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'sawarabi_minchomedium';
+    src: url('sawarabi-mincho-medium-webfont.eot');
+    src: url('sawarabi-mincho-medium-webfont.eot?#iefix') format('embedded-opentype'),
+         url('sawarabi-mincho-medium-webfont.woff2') format('woff2'),
+         url('sawarabi-mincho-medium-webfont.woff') format('woff'),
+         url('sawarabi-mincho-medium-webfont.ttf') format('truetype'),
+         url('sawarabi-mincho-medium-webfont.svg#sawarabi_minchomedium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
