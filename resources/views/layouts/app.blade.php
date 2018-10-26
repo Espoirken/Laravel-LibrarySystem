@@ -8,35 +8,43 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-
+    @toastr_css
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
+    <script src="{{ asset('js/app.js') }}" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    
+    <!-- Select 2 -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#users').select2();
+        });
+    </script>
+    
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ asset('css/fonts/sawarabigothic_medium_macroman/stylesheet.css') }}" type="text/css" charset="utf-8" />
-    <link rel="stylesheet" href="{{ asset('css/fonts/sawarabimincho_medium_macroman/stylesheet.css') }}" type="text/css" charset="utf-8" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.10/summernote.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <a href="http://blog.com/admin/users/profile"><img src="http://blog.com/uploads/avatars/1.jpeg" width="30" height="30" style="margin:10px" class="rounded-circle" alt="avatar"></a>
+            <a class="navbar-brand" href="#">{{ config('app.name', 'Laravel') }}</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
                 </button>
+
+                
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mx-auto">
-                        <li class="nav-item">
-                            <a class="navbar-brand">
-                                {{ config('app.name', 'Laravel') }}
-                            </a>
-                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('dashboard')}}"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
                         </li>
@@ -46,11 +54,26 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('transaction')}}"><i class="fa fa-credit-card" aria-hidden="true"></i> Transactions</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('books')}}"><i class="fa fa-book" aria-hidden="true"></i> Books</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-book" aria-hidden="true"></i>  Books
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" href="{{ route('books')}}">Show all Books</a>
+                                <a class="dropdown-item" href="{{ route('categories')}}">Show all Categories</a>
+                                <a class="dropdown-item" href="{{ route('books.create')}}">Create a new Book</a>
+                                <a class="dropdown-item " data-toggle="modal" data-target="#categoryModal" href="{{ route('categories.create')}}">Create a new Category</a>
+                            </div>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('users')}}"><i class="fa fa-users" aria-hidden="true"></i> Users</a>
+                        
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-users" aria-hidden="true"></i>  Users
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" href="{{ route('users')}}">Show all Users</a>
+                                <a class="dropdown-item" href="{{ route('users.create')}}">Create a new User</a>
+                            </div>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('settings')}}"><i class="fa fa-cog" aria-hidden="true"></i> Settings</a>
@@ -97,12 +120,12 @@
         </nav>
         
         <main class="py-4">
-            <div class="container">
-                <div class="row">
-                    @yield('content')
-                </div>
-            </div>
+            @yield('content')
+            {{-- This is the modal --}}
+            @include('admin.books.categories.create')
+            {{-- End of modal --}}
         </main>
     </div>
+    @toastr_render
 </body>
 </html>

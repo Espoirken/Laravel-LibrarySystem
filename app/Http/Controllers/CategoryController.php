@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Attendance;
 use App\User;
+use App\Category;
 
-class AttendanceController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,9 @@ class AttendanceController extends Controller
      */
     public function index()
     {
-        return view('admin.attendance.index')->with('users', User::all())
-                                            ->with('attendances', Attendance::orderBy('created_at','desc')->paginate(3));
+        
+        return view('admin.books.categories.index')->with('users', User::all())
+                                                    ->with('categories', Category::paginate(8));
     }
 
     /**
@@ -26,7 +27,8 @@ class AttendanceController extends Controller
      */
     public function create()
     {
-        //
+        
+        return view('admin.books.categories.create')->with('categories', Category::all());
     }
 
     /**
@@ -37,15 +39,15 @@ class AttendanceController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'name' => 'required',
         ]);
-        $attendance = new Attendance;
-        $attendance->name = $request->name;
-        $attendance->save();
-        toastr()->success('Attendance recorded successfully!');
-        return redirect()->back();
-        // $attendance->users()->attach($request->users);
+
+        $categories = new Category;
+        $categories->name = $request->name;
+        $categories->save();
+        toastr()->success('The category was saved successfully!');
+        return redirect()->route('categories');
     }
 
     /**
@@ -67,7 +69,8 @@ class AttendanceController extends Controller
      */
     public function edit($id)
     {
-        //
+        $categories = Category::find($id);
+        return view('admin.books.categories.edit')->with('categories', $categories);
     }
 
     /**
@@ -79,7 +82,14 @@ class AttendanceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+        ]);
+        $categories = Category::find($id);
+        $categories->name = $request->name;
+        $categories->save();
+        toastr()->success('The category was updated successfully!');
+        return redirect()->back();
     }
 
     /**
@@ -90,6 +100,8 @@ class AttendanceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Category::find($id)->delete();
+        toastr()->error('The category was deleted!');
+        return redirect()->back();
     }
 }

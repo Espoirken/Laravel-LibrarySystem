@@ -12,6 +12,8 @@ try {
     window.$ = window.jQuery = require('jquery');
 
     require('bootstrap');
+    window.toastr = require('toastr');
+    require('summernote/dist/summernote-bs4.js');
 } catch (e) {}
 
 /**

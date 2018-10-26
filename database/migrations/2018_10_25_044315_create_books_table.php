@@ -16,12 +16,12 @@ class CreateBooksTable extends Migration
         Schema::create('books', function (Blueprint $table) {
             $table->increments('id');
             $table->string('book_title');
-            $table->integer('category_id');
-            $table->string('author');
-            $table->string('source');
-            $table->string('publisher_name');
-            $table->integer('copyright_year');
-            $table->string('status');
+            $table->integer('category_id')->nullable();
+            $table->string('author')->nullable();
+            $table->string('source')->nullable();
+            $table->string('publisher_name')->nullable();
+            $table->integer('copyright_year')->nullable();
+            $table->string('status')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

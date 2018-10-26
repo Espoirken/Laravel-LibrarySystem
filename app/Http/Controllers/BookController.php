@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Book;
+use App\User;
+use App\Category;
 
 class BookController extends Controller
 {
@@ -13,7 +16,11 @@ class BookController extends Controller
      */
     public function index()
     {
-        return view('admin.books.index');
+        $category = Category::find(1);
+        
+        $books = Book::orderBy('id','asc')->paginate(8);
+        return view('admin.books.index')->with('books', $books)
+                                        ->with('category', $category);
     }
 
     /**
@@ -23,7 +30,7 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.books.create');
     }
 
     /**
@@ -34,7 +41,26 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'book_title' => 'required',
+            'category_id' => 'required',
+            'author' => 'required',
+            'source' => 'required',
+            'publisher_name' => 'required',
+            'copyright_year' => 'required',
+            'status' => 'required',
+        ]);
+        $books = new Book;
+        $books->book_title = $request->book_title;
+        $books->category_id = $request->category_id;
+        $books->author = $request->author;
+        $books->source = $request->source;
+        $books->publisher_name = $request->publisher_name;
+        $books->copyright_year = $request->copyright_year;
+        $books->status = $request->status;
+        $books->save();
+        toastr()->success('The book is created successfully!');
+        return redirect()->back();
     }
 
     /**
@@ -56,7 +82,8 @@ class BookController extends Controller
      */
     public function edit($id)
     {
-        //
+        $books = Book::find($id);
+        return view('admin.books.edit')->with('books', $books);
     }
 
     /**
@@ -68,7 +95,27 @@ class BookController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'book_title' => 'required',
+            'category_id' => 'required',
+            'author' => 'required',
+            'source' => 'required',
+            'publisher_name' => 'required',
+            'copyright_year' => 'required',
+            'status' => 'required',
+        ]);
+
+        $books = Book::find($id);
+        $books->book_title = $request->book_title;
+        $books->category_id = $request->category_id;
+        $books->author = $request->author;
+        $books->source = $request->source;
+        $books->publisher_name = $request->publisher_name;
+        $books->copyright_year = $request->copyright_year;
+        $books->status = $request->status;
+        $books->save();
+        toastr()->success('The book is updated successfully!');
+        return redirect()->back();
     }
 
     /**
@@ -79,6 +126,9 @@ class BookController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $books = Book::find($id);
+        $books->delete();
+        toastr()->error('The book is deleted!');
+        return redirect()->back();
     }
 }
