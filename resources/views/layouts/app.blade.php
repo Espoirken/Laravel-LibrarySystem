@@ -14,13 +14,24 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
     
-    <!-- Select 2 -->
+    <!-- Select 2 searching-->
     <script type="text/javascript">
         $(document).ready(function() {
             $('#users').select2();
         });
     </script>
     
+    <!-- Check All checkboxes-->
+    <script type="text/javascript">
+        function toggle(source) {
+           var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+           for (var i = 0; i < checkboxes.length; i++) {
+               if (checkboxes[i] != source)
+                   checkboxes[i].checked = source.checked;
+           }
+       }
+    </script>
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
@@ -30,12 +41,12 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.10/summernote.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jscroll/2.4.1/jquery.jscroll.min.js"></script>
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-            <a href="http://blog.com/admin/users/profile"><img src="http://blog.com/uploads/avatars/1.jpeg" width="30" height="30" style="margin:10px" class="rounded-circle" alt="avatar"></a>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+            <img src=" {{ asset('uploads/default_image/1.jpeg')}}" width="30" height="30" style="margin:10px" class="rounded-circle" alt="avatar"></a>
             <a class="navbar-brand" href="#">{{ config('app.name', 'Laravel') }}</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
@@ -59,10 +70,11 @@
                                 <i class="fa fa-book" aria-hidden="true"></i>  Books
                             </a>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="{{ route('books')}}">Show all Books</a>
-                                <a class="dropdown-item" href="{{ route('categories')}}">Show all Categories</a>
-                                <a class="dropdown-item" href="{{ route('books.create')}}">Create a new Book</a>
-                                <a class="dropdown-item " data-toggle="modal" data-target="#categoryModal" href="{{ route('categories.create')}}">Create a new Category</a>
+                                <a class="dropdown-item" href="{{ route('books')}}"><i class="fa fa-book"></i> List of Books</a>
+                                <a class="dropdown-item" href="{{ route('books.create')}}"><i class="fas fa-plus-square"></i> Create a new Book</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{ route('categories.index')}}"><i class="fas fa-tags"></i> List of Categories</a>
+                                <a class="dropdown-item " data-toggle="modal" data-target="#categoryModal" href="{{ route('categories.create')}}"><i class="fas fa-plus"></i> Create a new Category</a>
                             </div>
                         </li>
                         
@@ -70,9 +82,12 @@
                             <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fa fa-users" aria-hidden="true"></i>  Users
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="{{ route('users')}}">Show all Users</a>
-                                <a class="dropdown-item" href="{{ route('users.create')}}">Create a new User</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">  
+                                <a class="dropdown-item" href="{{ route('users.index')}}"><i class="fa fa-users"></i> List of Users</a>
+                                <a class="dropdown-item" href="{{ route('users.create')}}"><i class="fas fa-user-plus"></i> Create a new User</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{ route('types.index')}}"><i class="fa fa-user-tag" aria-hidden="true"></i> Types of User</a>
+                                <a class="dropdown-item " data-toggle="modal" data-target="#typesModal" href="{{ route('types.create')}}"><i class="fas fa fa-plus"></i> Create a new Type of User</a>
                             </div>
                         </li>
                         <li class="nav-item">
@@ -123,6 +138,7 @@
             @yield('content')
             {{-- This is the modal --}}
             @include('admin.books.categories.create')
+            @include('admin.users.types.create')
             {{-- End of modal --}}
         </main>
     </div>

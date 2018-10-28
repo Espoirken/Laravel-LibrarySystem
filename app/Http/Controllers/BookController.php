@@ -30,7 +30,8 @@ class BookController extends Controller
      */
     public function create()
     {
-        return view('admin.books.create');
+        return view('admin.books.create')->with('books', Book::all())
+                                        ->with('categories', Category::find(1));
     }
 
     /**
@@ -82,8 +83,10 @@ class BookController extends Controller
      */
     public function edit($id)
     {
-        $books = Book::find($id);
-        return view('admin.books.edit')->with('books', $books);
+        $book = Book::find($id);
+        $books = Book::all();
+        return view('admin.books.edit')->with('book', $book)
+                                        ->with('books', $books);
     }
 
     /**
@@ -130,5 +133,12 @@ class BookController extends Controller
         $books->delete();
         toastr()->error('The book is deleted!');
         return redirect()->back();
+    }
+
+    public function deleteAll(Request $request)
+    {
+        $ids = $request->ids;
+        DB::table("products")->whereIn('id',explode(",",$ids))->delete();
+        return response()->json(['success'=>"Products Deleted successfully."]);
     }
 }

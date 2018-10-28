@@ -2,6 +2,7 @@
 @include('inc.header')
 @section('content')
 @include('inc.messages')
+@include('inc.types')
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-8 offset-lg-2">
@@ -18,6 +19,7 @@
                         <div class="form-group">
                             <label for="gender">Gender</label>
                             <select class="form-control" name="gender">
+                            <option value="Male" hidden></option>
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
                             </select>
@@ -36,18 +38,33 @@
                         </div>
                         <div class="form-group">
                             <label for="type_id">Type</label>
-                            <select class="form-control" name="type_id">
+                            <select id="mySelect" onChange="check(this)" class="form-control" name="type_id">
+                            <option value="" hidden></option>
                             <option value="1">Student</option>
                             <option value="2">Teacher</option>
+                            <option value="3">Librarian</option>
+                            <option value="4">Faculty Member</option>
+                            <option value="5">Staff</option>
+                            <option value="6">Others</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="other-div" style="display:none;">
+                            <label for="year_level">Year Level</label>
+                            <select  id="otherName" class="form-control" name="year_level">
+                            <option value="" hidden></option>
+                            <option value="1">First Year</option>
+                            <option value="2">Second Year</option>
+                            <option value="3">Third Year</option>
+                            <option value="4">Fourth Year</option>
+                            <option value="5">Fifth Year</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="year_level">Year Level</label>
-                            <input type="text" name="year_level" class="form-control">
-                        </div>
-                        <div class="form-group">
                             <label for="status">Status</label>
-                            <input type="text" name="status" class="form-control">
+                            <select class="form-control" name="status">
+                            <option value="Active">Active</option>
+                            <option value="Disabled">Disabled</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <div class="text-center">
@@ -60,4 +77,7 @@
         </div>
     </div>
 </div>
+
+
+    
 @endsection

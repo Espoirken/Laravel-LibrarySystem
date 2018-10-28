@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\User;
+use App\Type;
 
 class UserController extends Controller
 {
@@ -16,7 +17,8 @@ class UserController extends Controller
     public function index()
     {
         
-        return view('admin.users.index')->with('users', User::paginate(10));
+        return view('admin.users.index')->with('users', User::paginate(10))
+                                        ->with('types', Type::find(1));
     }
 
     /**
@@ -40,12 +42,11 @@ class UserController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'email' => 'email|unique:users',
+            'email' => 'required|email|unique:users,email',
             'gender' => 'required',
             'address' => 'required',
             'contact' => 'required',
             'type_id' => 'required',
-            'year_level' => 'required',
             'status' => 'required',
         ]);
             
@@ -54,13 +55,13 @@ class UserController extends Controller
         $users->email = $request->email;
         $users->gender = $request->gender;
         $users->address = $request->address;
+        $users->year_level = $request->year_level;
         $users->contact = $request->contact;
         $users->type_id = $request->type_id;
-        $users->year_level = $request->year_level;
         $users->status = $request->status;
         $users->password = bcrypt(123123);
         $users->save();
-        toastr()->success('Saved changes successfully!');
+        toastr()->success('The user was successfully created!');
         return redirect()->back();
     }
 
@@ -83,8 +84,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $users = User::find($id);
-        return view('admin.users.edit')->with('user', $users);
+        return view('admin.users.edit')->with('users', User::find($id));
     }
 
     /**
@@ -96,14 +96,14 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $user = User::find($id);
         $this->validate($request, [
             'name' => 'required',
-            'email' => 'email|unique:users',
+            'email' => "email|unique:users,email,$id",
             'gender' => 'required',
             'address' => 'required',
             'contact' => 'required',
             'type_id' => 'required',
-            'year_level' => 'required',
             'status' => 'required',
         ]);
         $users = User::find($id);
@@ -117,7 +117,7 @@ class UserController extends Controller
         $users->status = $request->status;
         $users->save();
         toastr()->success('The users was updated successfully!');
-        return redirect()->route('users');
+        return redirect('/users');
     }
 
     /**
@@ -131,7 +131,7 @@ class UserController extends Controller
         $users = User::find($id);
         $users->delete();
         toastr()->error('The user is deleted!');
-        return redirect()->back();
+        return redirect('users');
     }
 
     public function search(){

@@ -7,13 +7,13 @@
         <div class="col-lg-8 offset-lg-2">
             <div class="card">
                 <div class="card-body">
-                    <h2 class="card-title">Edit Category</h2>
-                    <form action="{{ route('categories.update', ['id' => $categories->id]) }}" method="POST">
+                    <h2 class="card-title">Edit Type of User</h2>
+                    <form action="{{ route('types.update', ['id' => $types->id]) }}" method="POST">
                             {{ csrf_field() }}
                             @method('PATCH')
                             <div class="form-group">
-                                <label for="name">Name</label>
-                                <input type="text" name="name" value="{{$categories->name}}" class="form-control">
+                                <label for="user_type">Name</label>
+                                <input type="text" name="user_type" value="{{$types->user_type}}" class="form-control">
                             </div>
                             <div class="form-group">
                                 <div class="text-center">

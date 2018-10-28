@@ -44,8 +44,7 @@ class AttendanceController extends Controller
         $attendance->name = $request->name;
         $attendance->save();
         toastr()->success('Attendance recorded successfully!');
-        return redirect()->back();
-        // $attendance->users()->attach($request->users);
+        return redirect('attendance');
     }
 
     /**

@@ -12,13 +12,15 @@
 */
 
 Route::get('/test', function () {
-    // echo $books = App\Book::find(1)->category->category_name;
+    $users = App\Category::find(1);
+    
+    // echo $users = App\Type::find(1)->types;
 
-    toastr()->success('Data has been saved successfully!');
-    return view('welcome');
-    // foreach ($books as $book) {
-    //     echo $book->category_name;
-    // }
+    // toastr()->success('Data has been saved successfully!');
+    // return view('welcome');
+    foreach ($users->books as $user) {
+        echo $user;
+    }
 
 });
 
@@ -76,65 +78,88 @@ Route::get('/books/delete/{id}', [
     'as' => 'books.delete',
 ]);
 
-Route::get('/categories', [
-    'uses' => 'CategoryController@index',
-    'as' => 'categories',
-]);
+// Route::get('/categories', [
+//     'uses' => 'CategoryController@index',
+//     'as' => 'categories',
+// ]);
 
-Route::get('/categories/create', [
-    'uses' => 'CategoryController@create',
-    'as' => 'categories.create',
-]);
+// Route::get('/categories/create', [
+//     'uses' => 'CategoryController@create',
+//     'as' => 'categories.create',
+// ]);
 
-Route::post('/categories/store', [
-    'uses' => 'CategoryController@store',
-    'as' => 'categories.store',
-]);
+// Route::post('/categories/store', [
+//     'uses' => 'CategoryController@store',
+//     'as' => 'categories.store',
+// ]);
 
-Route::get('/categories/edit/{id}', [
-    'uses' => 'CategoryController@edit',
-    'as' => 'categories.edit',
-]);
+// Route::get('/categories/edit/{id}', [
+//     'uses' => 'CategoryController@edit',
+//     'as' => 'categories.edit',
+// ]);
 
-Route::post('/categories/update/{id}', [
-    'uses' => 'CategoryController@update',
-    'as' => 'categories.update',
-]);
+// Route::post('/categories/update/{id}', [
+//     'uses' => 'CategoryController@update',
+//     'as' => 'categories.update',
+// ]);
+
+// Route::get('/categories/delete/{id}', [
+//     'uses' => 'CategoryController@destroy',
+//     'as' => 'categories.delete',
+// ]);
+
+// Route::get('/users', [
+//     'uses' => 'UserController@index',
+//     'as' => 'users',
+// ]);
+
+// Route::get('/users/create', [
+//     'uses' => 'UserController@create',
+//     'as' => 'users.create',
+// ]);
+
+// Route::post('/users/store', [
+//     'uses' => 'UserController@store',
+//     'as' => 'users.store',
+// ]);
+
+// Route::get('/users/edit/{id}', [
+//     'uses' => 'UserController@edit',
+//     'as' => 'users.edit',
+// ]);
+
+// Route::post('/users/update/{id}', [
+//     'uses' => 'UserController@update',
+//     'as' => 'users.update',
+// ]);
+
+// Route::get('/users/delete/{id}', [
+//     'uses' => 'UserController@destroy',
+//     'as' => 'users.delete',
+// ]);
+
+Route::resource('categories', 'CategoryController');
 
 Route::get('/categories/delete/{id}', [
     'uses' => 'CategoryController@destroy',
     'as' => 'categories.delete',
 ]);
 
-Route::get('/users', [
-    'uses' => 'UserController@index',
-    'as' => 'users',
-]);
 
-Route::get('/users/create', [
-    'uses' => 'UserController@create',
-    'as' => 'users.create',
-]);
-
-Route::post('/users/store', [
-    'uses' => 'UserController@store',
-    'as' => 'users.store',
-]);
-
-Route::get('/users/edit/{id}', [
-    'uses' => 'UserController@edit',
-    'as' => 'users.edit',
-]);
-
-Route::post('/users/update/{id}', [
-    'uses' => 'UserController@update',
-    'as' => 'users.update',
-]);
+Route::resource('users', 'UserController');
 
 Route::get('/users/delete/{id}', [
     'uses' => 'UserController@destroy',
     'as' => 'users.delete',
 ]);
+
+Route::resource('types', 'TypeController');
+
+Route::get('/types/delete/{id}', [
+    'uses' => 'TypeController@destroy',
+    'as' => 'types.delete',
+]);
+
 
 Route::get('/settings', [
     'uses' => 'SettingController@index',
@@ -146,15 +171,17 @@ Route::get('/reports', [
     'as' => 'reports',
 ]);
 
+Route::get('/myproductsDeleteAll', [
+    'uses' => 'ReportController@index',
+    'as' => 'reports',
+]);
+
+
+
 Route::get('/results', function(){
     if (App\Post::first()) {    
-    $posts = App\Post::where('title', 'like', '%' . request('query') . '%')->get();
-    return view('results')->with('posts', $posts)
-                        ->with('title', 'Search results :' . request('query'))
-                        ->with('settings', \App\Setting::first())
-                        ->with('categories', \App\Category::take(5)->get())
-                        ->with('query', request('query'))
-                        ->with('user', App\User::first());
+    $posts = App\Post::where('book_title', 'like', '%' . request('query') . '%')->get();
+    return view('results')->with('posts', $posts);
     }
     else{
         toastr()->error('No results found!');

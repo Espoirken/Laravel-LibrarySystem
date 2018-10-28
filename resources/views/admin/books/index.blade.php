@@ -10,16 +10,16 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Accession Number</th>
-                        <th>Title</th>
-                        <th>Category</th>
-                        <th>Author</th>
-                        <th>Publisher Name</th>
-                        <th>Copyright Year</th>
-                        <th>Date Added</th>
-                        <th>Status</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
+                        <th>ACCESSION</th>
+                        <th>TITLE</th>
+                        <th>CATEGORY</th>
+                        <th>AUTHOR</th>
+                        <th>PUBLISHER</th>
+                        <th>COPYRIGHT</th>
+                        <th>DATE ADDED</th>
+                        <th>STATUS</th>
+                        <th>EDIT</th>
+                        <th>DELETE</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -28,11 +28,11 @@
                     <tr>
                         <td>{{$book->id}}</td>
                         <td>{{$book->book_title}}</td>
-                        <td>{{$book->category_id}}</td>
+                        <td>{{$book->category->name}}</td>
                         <td>{{$book->author}}</td>
                         <td>{{$book->publisher_name}}</td>
                         <td>{{$book->copyright_year}}</td>
-                        <td>{{$book->created_at->timezone('Asia/Singapore')->format('M. d, Y - D - h:i:s A')}}</td>
+                        <td>{{$book->created_at->timezone('Asia/Singapore')->format('M. d, Y - D  h:i:s A')}}</td>
                         <td>{{$book->status}}</td>
                         <td><a class="btn btn-sm btn-primary" href="{{ route('books.edit', ['id' => $book->id ])}}"><i class="fa fa-edit"></i> Edit</a></td>
                         <td><a class="btn btn-sm btn-danger" href="{{ route('books.delete', ['id' => $book->id])}}"><i class="fa fa-trash" aria-hidden="true"></i> Delete</a></td>

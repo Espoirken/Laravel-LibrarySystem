@@ -19,7 +19,10 @@
                         <div class="form-group">
                             <label for="category_id">Category</label>
                             <select class="form-control" name="category_id">
-                            <option value="1">1</option>
+                                @foreach ($books as $book)
+                                <option value="" hidden></option>
+                                <option value="{{$book->category->id}}">{{$book->category->name}}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-group">
@@ -39,9 +42,13 @@
                             <input type="text" name="copyright_year" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="status">Status</label>
-                            <input type="text" name="status" class="form-control">
-                        </div>
+                                <label for="category_id">Category</label>
+                                <select class="form-control" name="category_id">
+                                    <option value="Active">Active</option>
+                                    <option value="Active">Inactive</option>
+                                    <option value="Disabled">Disabled</option>
+                                </select>
+                            </div>
                         <div class="form-group">
                             <div class="text-center">
                                 <button class="btn btn-success" type="submit">Add book</button>

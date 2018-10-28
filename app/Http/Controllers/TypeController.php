@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
-use App\Category;
+use App\Type;
 
-class CategoryController extends Controller
+class TypeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +14,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        
-        return view('admin.books.categories.index')->with('users', User::all())
-                                                    ->with('categories', Category::paginate(8));
+        return view('admin.users.types.index')->with('types', Type::orderBy('user_type', 'asc')->paginate(10));
     }
 
     /**
@@ -27,8 +24,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        
-        return view('admin.books.categories.create')->with('categories', Category::all());
+        return view('admin.users.types.create');
     }
 
     /**
@@ -40,14 +36,13 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required',
+            'user_type' => 'required|unique:types',
         ]);
-
-        $categories = new Category;
-        $categories->name = $request->name;
-        $categories->save();
-        toastr()->success('The category was saved successfully!');
-        return redirect('categories');
+        $types = new Type;
+        $types->user_type = $request->user_type;
+        $types->save();
+        toastr()->success('A type of user was successfully created!');
+        return redirect()->back();
     }
 
     /**
@@ -69,8 +64,7 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $categories = Category::find($id);
-        return view('admin.books.categories.edit')->with('categories', $categories);
+        return view('admin.users.types.edit')->with('types', Type::find($id));
     }
 
     /**
@@ -83,13 +77,13 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name' => 'required',
+            'user_type' => 'required|unique:types',
         ]);
-        $categories = Category::find($id);
-        $categories->name = $request->name;
-        $categories->save();
-        toastr()->success('The category was updated successfully!');
-        return redirect()->back();
+        $types = Type::find($id);
+        $types->user_type = $request->user_type;
+        $types->save();
+        toastr()->success('A type of user was successfully updated!');
+        return redirect('types');
     }
 
     /**
@@ -100,13 +94,9 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $categories = Category::find($id);
-        foreach ($categories->books as $category) {
-            $category->delete();
-        }
-
-        $categories->delete();
-        toastr()->error('The category was deleted!');
-        return redirect('categories');
+        $types = Type::find($id);
+        $types->delete();
+        toastr()->error('A type of user was deleted!');
+        return redirect()->back();
     }
 }
