@@ -19,7 +19,7 @@ $factory->define(App\User::class, function (Faker $faker) {
         'contact' => $faker->phoneNumber,
         'address' => $faker->address,
         'gender' => 'Male',
-        'year_level' => $faker->numberBetween($min = 1, $max = 5),
+        'year_level_id' => $faker->numberBetween($min = 1, $max = 2),
         'type_id' => $faker->numberBetween($min = 1, $max = 6),
         'status' => 'Active',
         'email' => $faker->unique()->safeEmail,

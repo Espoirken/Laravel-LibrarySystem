@@ -16,6 +16,7 @@
                         <th>AUTHOR</th>
                         <th>PUBLISHER</th>
                         <th>COPYRIGHT</th>
+                        <th>SOURCE</th>
                         <th>DATE ADDED</th>
                         <th>STATUS</th>
                         <th>EDIT</th>
@@ -28,8 +29,9 @@
                     <tr>
                         <td>{{$book->id}}</td>
                         <td>{{$book->book_title}}</td>
-                        <td>{{$book->category->name}}</td>
+                        <td>{{$book->category->category_name}}</td>
                         <td>{{$book->author}}</td>
+                        <td>{{$book->source}}</td>
                         <td>{{$book->publisher_name}}</td>
                         <td>{{$book->copyright_year}}</td>
                         <td>{{$book->created_at->timezone('Asia/Singapore')->format('M. d, Y - D  h:i:s A')}}</td>

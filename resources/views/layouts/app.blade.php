@@ -10,7 +10,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
     @toastr_css
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" ></script>
+    <script src="{{ asset('js/app.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
     
@@ -42,6 +42,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.10/summernote.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jscroll/2.4.1/jquery.jscroll.min.js"></script>
+    <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -51,7 +52,6 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
                 </button>
-
                 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
@@ -62,18 +62,27 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('attendance')}}"><i class="fa fa-address-book" aria-hidden="true"></i> Attendances</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('transaction')}}"><i class="fa fa-credit-card" aria-hidden="true"></i> Transactions</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-book" aria-hidden="true"></i> Transactions
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" href="{{ route('borrows.index')}}"><i class="fa fa-book-open"></i> Borrow Book</a>
+                                {{-- <a class="dropdown-item" href="{{ route('books.borrow')}}"><i class="fa fa-undo"></i> Return Book</a> --}}
+                                {{-- <a class="dropdown-item" href="{{ route('books.return')}}"><i class="fas fa-book"></i> Reserve Books</a> --}}
+                            </div>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-book" aria-hidden="true"></i>  Books
+                                <i class="fa fa-book" aria-hidden="true"></i> Books
                             </a>
+
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 <a class="dropdown-item" href="{{ route('books')}}"><i class="fa fa-book"></i> List of Books</a>
-                                <a class="dropdown-item" href="{{ route('books.create')}}"><i class="fas fa-plus-square"></i> Create a new Book</a>
+                                <a class="dropdown-item" href="{{ route('books.create')}}"><i class="fa fa-plus"></i> Create a new Book</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{{ route('categories.index')}}"><i class="fas fa-tags"></i> List of Categories</a>
+                                <a class="dropdown-item" href="{{ route('categories.index')}}"><i class="fas fa-list"></i> List of Categories</a>
                                 <a class="dropdown-item " data-toggle="modal" data-target="#categoryModal" href="{{ route('categories.create')}}"><i class="fas fa-plus"></i> Create a new Category</a>
                             </div>
                         </li>
@@ -84,17 +93,20 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">  
                                 <a class="dropdown-item" href="{{ route('users.index')}}"><i class="fa fa-users"></i> List of Users</a>
-                                <a class="dropdown-item" href="{{ route('users.create')}}"><i class="fas fa-user-plus"></i> Create a new User</a>
+                                <a class="dropdown-item" href="{{ route('users.create')}}"><i class="fa fa-plus"></i> Create a new User</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ route('types.index')}}"><i class="fa fa-user-tag" aria-hidden="true"></i> Types of User</a>
-                                <a class="dropdown-item " data-toggle="modal" data-target="#typesModal" href="{{ route('types.create')}}"><i class="fas fa fa-plus"></i> Create a new Type of User</a>
+                                <a class="dropdown-item " data-toggle="modal" data-target="#typesModal" href="{{ route('types.create')}}"><i class="fa fa fa-plus"></i> Create a new Type of User</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{ route('year_levels.index')}}"><i class="fa fa-graduation-cap" aria-hidden="true"></i> List of Year levels</a>
+                                <a class="dropdown-item " data-toggle="modal" data-target="#yearLevelModal" href="{{ route('year_levels.create')}}"><i class="fa fa fa-plus"></i> Create a new Year level of User</a>
                             </div>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('settings')}}"><i class="fa fa-cog" aria-hidden="true"></i> Settings</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('reports')}}"><i class="fa fa-tasks" aria-hidden="true"></i> Reports</a>
+                            <a class="nav-link" href="{{ route('reports')}}"><i class="fa fa-chart-bar" aria-hidden="true"></i> Reports</a>
                         </li>
                     </ul>
 
@@ -131,14 +143,14 @@
                         @endguest
                     </ul>
                 </div>
-            
         </nav>
-        
+
         <main class="py-4">
             @yield('content')
             {{-- This is the modal --}}
             @include('admin.books.categories.create')
             @include('admin.users.types.create')
+            @include('admin.users.year_level.create')
             {{-- End of modal --}}
         </main>
     </div>

@@ -11,15 +11,36 @@
                 <div class="modal-body">
                     {{ csrf_field() }}
                     <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" name="name" class="form-control" autofocus>
+                        <label for="category_name">Category Name</label>
+                        <input type="text" name="category_name" class="form-control" autofocus>
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-sm mr-auto" data-toggle="collapse" data-target="#showCategory">Show All Categories <i class="fa fa-caret-down"></i></button>
                     <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-sm btn-success">Create category</button>
                 </div>
             </form>
+
+            <div class="container-fluid collapse" id="showCategory">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="text-center">List of Categories</h2>
+                        @if (count($categories) > 0)
+                        @foreach ($categories as $category)
+                            <li class="list-group-item">{{$category->category_name}}</li>
+                        @endforeach
+                        @else
+                            <ul class="list-group">
+                                <li class="list-group-item">No categories found</li>
+                            </ul>
+                        @endif
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
+
+

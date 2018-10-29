@@ -8,7 +8,8 @@
         <div class="col-lg-8 offset-lg-2">
             <div class="card">
                 <div class="card-body">
-                    <div class="card-title text-center"><h2>Create a new User</h2></div>
+                    <a href="{{ route('users.index')}}" class="btn btn-sm btn-primary float-right"><i class="fa fa-search"></i> Show all users</a>
+                    <div class="card-title"><h2>Create a new User</h2></div>
                     <hr>
                     <form action="{{ route('users.store') }}" method="POST">
                         {{ csrf_field() }}
@@ -51,12 +52,9 @@
                         <div class="form-group" id="other-div" style="display:none;">
                             <label for="year_level">Year Level</label>
                             <select  id="otherName" class="form-control" name="year_level">
-                            <option value="" hidden></option>
-                            <option value="1">First Year</option>
-                            <option value="2">Second Year</option>
-                            <option value="3">Third Year</option>
-                            <option value="4">Fourth Year</option>
-                            <option value="5">Fifth Year</option>
+                                @foreach ($year_levels as $year_level)
+                                <option value="{{$year_level->year_level}}">{{$year_level->year_level}}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-group">

@@ -18,9 +18,9 @@
                         <div class="form-group">
                             <label for="category_id">Category</label>
                             <select class="form-control" name="category_id">
-                                <option value="{{$book->category->id}}">{{$book->category->name}}</option>
+                                <option value="{{$book->category->id}}">{{$book->category->category_name}}</option>
                                 @foreach ($books as $book)
-                                <option value="{{$book->category->id}}">{{$book->category->name}}</option>
+                                <option value="{{$book->category->id}}">{{$book->category->category_name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -41,8 +41,8 @@
                             <input type="text" name="copyright_year" value="{{$book->copyright_year}}" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="category_id">Status</label>
-                            <select class="form-control" name="category_id">
+                            <label for="status">Status</label>
+                            <select class="form-control" name="status">
                             <option value="{{$book->status}}">{{$book->status}}</option>
                             <option value="Available">Available</option>
                             <option value="Inactive">Borrowed</option>
@@ -51,7 +51,7 @@
                         </div>
                         <div class="form-group">
                             <div class="text-center">
-                                <button class="btn btn-success" type="submit">Create</button>
+                                <button class="btn btn-success" type="submit"><i class="fa fa-save"></i> Save Changes</button>
                             </div>
                         </div>
                     </form>

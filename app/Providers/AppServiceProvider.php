@@ -4,6 +4,10 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
+use App\YearLevel;
+use App\Category;
+use App\Type;
+use App\Borrow;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -15,6 +19,13 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
+        view()->composer(
+            'layouts.app', 
+            function ($view) {
+                $view->with('year_levels', YearLevel::all())->with('categories', Category::all())
+                                                            ->with('types', Type::all());
+            }
+        );
     }
 
     /**

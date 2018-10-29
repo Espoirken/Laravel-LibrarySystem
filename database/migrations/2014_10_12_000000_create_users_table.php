@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('contact')->nullable();
             $table->boolean('admin')->default(0);
             $table->integer('type_id')->nullable();
-            $table->integer('year_level')->nullable();
+            $table->integer('year_level_id')->nullable();
             $table->string('status')->nullable();
             $table->rememberToken();
             $table->timestamps();

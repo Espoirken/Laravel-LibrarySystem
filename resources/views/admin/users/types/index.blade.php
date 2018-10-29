@@ -34,7 +34,6 @@
             </table>
         </div>
         <div class="d-flex justify-content-center sticky-bottom" >{{$types->links()}}</div> 
-        <div class="fixed-bottom">...</div>
     </div>
 </div>
 @endsection

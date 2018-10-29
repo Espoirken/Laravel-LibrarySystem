@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\User;
 use App\Type;
+use App\YearLevel;
 
 class UserController extends Controller
 {
@@ -16,7 +17,18 @@ class UserController extends Controller
      */
     public function index()
     {
-        
+        $year_levels = YearLevel::all();
+        $types = Type::all();
+        if ($year_levels->count() == 0) {
+
+            toastr()->info('Please create a year level  first!');
+            return redirect('year_levels');
+        }
+        if ($types->count() == 0) {
+
+            toastr()->info('Please create a type of user  first ');
+            return redirect()->back();
+        }
         return view('admin.users.index')->with('users', User::paginate(10))
                                         ->with('types', Type::find(1));
     }
@@ -29,7 +41,8 @@ class UserController extends Controller
     public function create()
     {
         
-        return view('admin.users.create');
+        return view('admin.users.create')->with('users', User::all())
+                                        ->with('year_levels', YearLevel::all());
     }
 
     /**
@@ -55,7 +68,7 @@ class UserController extends Controller
         $users->email = $request->email;
         $users->gender = $request->gender;
         $users->address = $request->address;
-        $users->year_level = $request->year_level;
+        $users->year_level_id = $request->year_level_id;
         $users->contact = $request->contact;
         $users->type_id = $request->type_id;
         $users->status = $request->status;
@@ -113,7 +126,7 @@ class UserController extends Controller
         $users->address = $request->address;
         $users->contact = $request->contact;
         $users->type_id = $request->type_id;
-        $users->year_level = $request->year_level;
+        $users->year_level_id = $request->year_level_id;
         $users->status = $request->status;
         $users->save();
         toastr()->success('The users was updated successfully!');

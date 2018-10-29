@@ -19,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'gender', 'address', 'contact', 'type_id', 'status',
     ];
 
     /**
@@ -33,5 +33,13 @@ class User extends Authenticatable
 
     public function type(){
         return $this->belongsTo('App\Type');
+    }
+    
+    public function year_level(){
+        return $this->belongsTo('App\YearLevel');
+    }
+
+    public function books(){
+        return $this->belongsToMany('App\Book');
     }
 }

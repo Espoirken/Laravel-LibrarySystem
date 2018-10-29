@@ -20,7 +20,7 @@
                     @if (count($categories) > 0)
                     @foreach ($categories as $category)
                     <tr>
-                        <td>{{$category->name}}</td>
+                        <td>{{$category->category_name}}</td>
                         <td width="100px"><a class="btn btn-sm btn-primary" href="{{ route('categories.edit', ['id' => $category->id ])}}"><i class="fa fa-edit"></i> Edit</a></td>
                         <td width="100px"><a class="btn btn-sm btn-danger" href="{{ route('categories.delete', ['id' => $category->id])}}"><i class="fa fa-trash" aria-hidden="true"></i> Delete</a></td>
                     </tr>
@@ -34,7 +34,6 @@
             </table>
         </div>
         <div class="d-flex justify-content-center sticky-bottom" >{{$categories->links()}}</div> 
-        <div class="fixed-bottom">...</div>
     </div>
 </div>
 @endsection

@@ -2,7 +2,7 @@
 @include('inc.header')
 @section('content')
 @include('inc.messages')
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col-lg-8 offset-lg-2">
             <div class="card">
@@ -19,9 +19,9 @@
                         <div class="form-group">
                             <label for="category_id">Category</label>
                             <select class="form-control" name="category_id">
-                                @foreach ($books as $book)
+                                @foreach ($categories as $category)
                                 <option value="" hidden></option>
-                                <option value="{{$book->category->id}}">{{$book->category->name}}</option>
+                                <option value="{{$category->id}}">{{$category->category_name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -42,8 +42,8 @@
                             <input type="text" name="copyright_year" class="form-control">
                         </div>
                         <div class="form-group">
-                                <label for="category_id">Category</label>
-                                <select class="form-control" name="category_id">
+                                <label for="status">Status</label>
+                                <select class="form-control" name="status">
                                     <option value="Active">Active</option>
                                     <option value="Active">Inactive</option>
                                     <option value="Disabled">Disabled</option>

@@ -10,7 +10,7 @@ class Book extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'book_title', 'category_id', 'author','source','publisher_name', 'copyright_year', 'status'
+        'book_title', 'category_id', 'author','publisher_name', 'copyright_year', 'status'
     ];
 
     protected $dates = ['deleted_at'];
@@ -19,9 +19,9 @@ class Book extends Model
         return $this->belongsTo('App\Category');
     }
 
-    // public function borrow(){
-    //     return $this->hasMany('App\Borrow');
-    // }
+    public function users(){
+        return $this->belongsToMany('App\User');
+    }
 
     // public function user(){
     //     return $this->hasMany('App\User');

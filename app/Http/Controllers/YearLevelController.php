@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
-use App\Category;
+use App\YearLevel;
 
-class CategoryController extends Controller
+class YearLevelController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +14,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.books.categories.index')->with('users', User::all())
-                                                    ->with('categories', Category::paginate(8));
+        return view('admin.users.year_level.index')->with('year_levels', YearLevel::paginate(10));
     }
 
     /**
@@ -26,8 +24,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        
-        return view('admin.books.categories.create')->with('categories', Category::all());
+        return view('admin.users.year_level.create')>with('year_levels', YearLevel::all());
     }
 
     /**
@@ -38,15 +35,14 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'category_name' => 'required|unique:categories',
+        $this->validate($request,[
+            'year_level' => 'required|unique:year_levels',
         ]);
-
-        $categories = new Category;
-        $categories->category_name = $request->category_name;
-        $categories->save();
-        toastr()->success('The category was saved successfully!');
-        return redirect('categories');
+        $year_level = new YearLevel;
+        $year_level->year_level = $request->year_level;
+        $year_level->save();
+        toastr()->success('The Year level was successfully created!');
+        return redirect()->back();
     }
 
     /**
@@ -68,8 +64,7 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $categories = Category::find($id);
-        return view('admin.books.categories.edit')->with('categories', $categories);
+        return view('admin.users.year_level.edit')->with('year_levels', YearLevel::find($id));
     }
 
     /**
@@ -81,14 +76,14 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'category_name' => "required|unique:categories,category_name,$id",
+        $this->validate($request,[
+            'year_level' => 'required',
         ]);
-        $categories = Category::find($id);
-        $categories->category_name = $request->category_name;
-        $categories->save();
-        toastr()->success('The category was updated successfully!');
-        return redirect()->back();
+        $year_level = YearLevel::find($id);
+        $year_level->year_level = $request->year_level;
+        $year_level->save();
+        toastr()->success('The Year level was successfully updated!');
+        return redirect('year_levels');
     }
 
     /**
@@ -99,13 +94,13 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $categories = Category::find($id);
-        foreach ($categories->books as $category) {
-            $category->delete();
+        $year_levels = YearLevel::find($id);
+        foreach ($year_levels->user as $year_level) {
+            $year_level->delete();
         }
-
-        $categories->delete();
-        toastr()->error('The category was deleted!');
-        return redirect('categories');
+        $year_levels->delete();
+        
+        toastr()->error('The Year level was deleted!');
+        return redirect('year_levels');;
     }
 }

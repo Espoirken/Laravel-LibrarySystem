@@ -12,15 +12,19 @@
 */
 
 Route::get('/test', function () {
-    $users = App\Category::find(1);
+    // echo $books = App\Book::find(1)->category_id;
+    // echo $post->tags()->attach($request->tags);
+           
+    $user = App\User::first();
+    
     
     // echo $users = App\Type::find(1)->types;
 
     // toastr()->success('Data has been saved successfully!');
     // return view('welcome');
-    foreach ($users->books as $user) {
-        echo $user;
-    }
+    // foreach ($categories->name as $category) {
+    //     echo $category;
+    // }
 
 });
 
@@ -78,65 +82,15 @@ Route::get('/books/delete/{id}', [
     'as' => 'books.delete',
 ]);
 
-// Route::get('/categories', [
-//     'uses' => 'CategoryController@index',
-//     'as' => 'categories',
-// ]);
+Route::get('/books/borrow', [
+    'uses' => 'BookController@index_borrow',
+    'as' => 'borrows.index',
+]);
 
-// Route::get('/categories/create', [
-//     'uses' => 'CategoryController@create',
-//     'as' => 'categories.create',
-// ]);
-
-// Route::post('/categories/store', [
-//     'uses' => 'CategoryController@store',
-//     'as' => 'categories.store',
-// ]);
-
-// Route::get('/categories/edit/{id}', [
-//     'uses' => 'CategoryController@edit',
-//     'as' => 'categories.edit',
-// ]);
-
-// Route::post('/categories/update/{id}', [
-//     'uses' => 'CategoryController@update',
-//     'as' => 'categories.update',
-// ]);
-
-// Route::get('/categories/delete/{id}', [
-//     'uses' => 'CategoryController@destroy',
-//     'as' => 'categories.delete',
-// ]);
-
-// Route::get('/users', [
-//     'uses' => 'UserController@index',
-//     'as' => 'users',
-// ]);
-
-// Route::get('/users/create', [
-//     'uses' => 'UserController@create',
-//     'as' => 'users.create',
-// ]);
-
-// Route::post('/users/store', [
-//     'uses' => 'UserController@store',
-//     'as' => 'users.store',
-// ]);
-
-// Route::get('/users/edit/{id}', [
-//     'uses' => 'UserController@edit',
-//     'as' => 'users.edit',
-// ]);
-
-// Route::post('/users/update/{id}', [
-//     'uses' => 'UserController@update',
-//     'as' => 'users.update',
-// ]);
-
-// Route::get('/users/delete/{id}', [
-//     'uses' => 'UserController@destroy',
-//     'as' => 'users.delete',
-// ]);
+Route::post('/books/borrows/', [
+    'uses' => 'BookController@borrow',
+    'as' => 'books.borrow',
+]);
 
 Route::resource('categories', 'CategoryController');
 
@@ -146,12 +100,6 @@ Route::get('/categories/delete/{id}', [
 ]);
 
 
-Route::resource('users', 'UserController');
-
-Route::get('/users/delete/{id}', [
-    'uses' => 'UserController@destroy',
-    'as' => 'users.delete',
-]);
 
 Route::resource('types', 'TypeController');
 
@@ -164,6 +112,20 @@ Route::get('/types/delete/{id}', [
 Route::get('/settings', [
     'uses' => 'SettingController@index',
     'as' => 'settings',
+]);
+
+Route::resource('users', 'UserController');
+
+Route::get('/users/delete/{id}', [
+    'uses' => 'UserController@destroy',
+    'as' => 'users.delete',
+]);
+
+Route::resource('year_levels', 'YearLevelController');
+
+Route::get('/year_levels/delete/{id}', [
+    'uses' => 'YearLevelController@destroy',
+    'as' => 'year_levels.delete',
 ]);
 
 Route::get('/reports', [

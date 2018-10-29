@@ -17,7 +17,12 @@ class BookController extends Controller
     public function index()
     {
         $category = Category::find(1);
-        
+        $categories = Category::all();
+        if ($categories->count() == 0) {
+
+            toastr()->info('Please create a category first!');
+            return redirect('categories');
+        }
         $books = Book::orderBy('id','asc')->paginate(8);
         return view('admin.books.index')->with('books', $books)
                                         ->with('category', $category);
@@ -31,7 +36,7 @@ class BookController extends Controller
     public function create()
     {
         return view('admin.books.create')->with('books', Book::all())
-                                        ->with('categories', Category::find(1));
+                                        ->with('categories', Category::all());
     }
 
     /**
@@ -135,10 +140,45 @@ class BookController extends Controller
         return redirect()->back();
     }
 
+        //                                                  //
+        //                      BORROW                      //
+        //                                                  //
+
+    public function index_borrow(){
+        $books = Book::all();
+        $categories = Category::all();
+        if ($books->count() == 0||$categories->count() == 0) {
+
+            toastr()->info('Please create a book first!');
+            return redirect()->back();
+        }
+
+        return view('circulations.borrows.borrow')->with('books', $books)
+                                                ->with('users', User::all());
+    }
+
+    public function borrow(Request $request){
+        $user = User::where('id', $request->users)->first();
+        $books =  $request->books;
+        foreach ($books as $key => $book) {
+            Book::where('id', [$book])->update(['status' => 'Borrowed']);
+        }
+        $user->books()->attach($book,['borrow_status' => 'Borrowed']);
+        toastr()->success('Post created successfully!');
+        return redirect()->back();
+    }
+        //                                                  //
+        //              END OF BORROW                       //
+        //                                                  //
+
+    
+
+
     public function deleteAll(Request $request)
     {
         $ids = $request->ids;
         DB::table("products")->whereIn('id',explode(",",$ids))->delete();
         return response()->json(['success'=>"Products Deleted successfully."]);
     }
+
 }

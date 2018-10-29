@@ -16,10 +16,28 @@
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-sm mr-auto" data-toggle="collapse" data-target="#showTypes">Show All Types of User <i class="fa fa-caret-down"></i></button>
                     <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-sm btn-success">Create type of user</button>
                 </div>
             </form>
+
+            <div class="container-fluid collapse" id="showTypes">
+                <div class="card">
+                    <div class="card-body">
+                        <h4>Type of user</h4>
+                        @if (count($types) > 0)
+                        @foreach ($types as $type)
+                        <ul class="list-group">
+                            <li class="list-group-item">{{$type->user_type}}</td>
+                        </ul>
+                        @endforeach
+                        @else
+                            <li class="list-group-item text-center">No types of user found</li>
+                        @endif
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

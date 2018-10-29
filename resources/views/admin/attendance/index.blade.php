@@ -18,7 +18,6 @@
                                     <option value="{{$user->name}}">{{$user->name}}</option>
                                 @endforeach
                             </select>   
-                            
                         </div>
                         <div class="form-group">
                             <div class="text-center">

@@ -15,14 +15,14 @@
                     <tr>
                         <th><input type="checkbox" onclick="toggle(this);"></th>
                         <th>ID</th>
-                        <th>Name</th>
-                        <th>Contact</th>
-                        <th>Address</th>
-                        <th>Type</th>
-                        <th>Year level</th>
-                        <th>Status</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
+                        <th>NAME</th>
+                        <th>CONTACT</th>
+                        <th>ADDRESS</th>
+                        <th>TYPE</th>
+                        <th>YEAR LEVEL</th>
+                        <th>STATUS</th>
+                        <th>EDIT</th>
+                        <th>DELETE</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -49,7 +49,7 @@
                             <td>{{$user->contact}}</td>
                             <td>{{$user->address}}</td>
                             <td>{{$user->type->user_type}}</td>
-                            <td>{{$user->year_level}}</td>
+                            <td>{{$user->year_level->year_level}}</td>
                             <td>{{$user->status}}</td>
                             <td><a class="btn btn-sm btn-primary" href="{{ route('users.edit', ['id' => $user->id])}}"><i class="fa fa-user-edit"></i> Edit</a></td>
                             <td><a class="btn btn-sm btn-danger" onclick="return confirm('Deleting a user will permanently remove it from your system.')" href="{{ route('users.delete', ['id' => $user->id])}}"><i class="fa fa-user-times"></i> Delete</a></td>
