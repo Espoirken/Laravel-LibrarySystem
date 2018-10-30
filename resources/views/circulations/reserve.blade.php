@@ -5,20 +5,20 @@
 <div class="container-fluid">
     <div class="card">
         <div class="card-body">
-            <form action="{{ route('books.borrow') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('books.reserve') }}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="row">
-                    <div class="col-lg-2"><h2 class="card-title">Borrow Book</h2></div>
+                    <div class="col-lg-2"><h2 class="card-title">Reserve Book</h2></div>
                     <div class="col-lg-3 offset-lg-6 form-group"> 
                         <label for="users"><h4>Select a student</h4></label>
                         <select class="form-control" id="users" name="users">
-                            @foreach ($users as $user)
                             <option hidden></option>
+                            @foreach ($users as $user)
                                 <option value="{{$user->id}}">{{$user->name}}</option>
                             @endforeach
                         </select>   
                     </div>
-                    <div class="col-lg-1"><button class="btn btn-sm btn-success float-right" type="submit"><i class="fa fa-plus"></i> Borrow</button></div>
+                    <div class="col-lg-1"><button class="btn btn-sm btn-primary float-right" type="submit"><i class="fa fa-book"></i> Reserve</button></div>
                 </div>
                 <table class="table">
                     <thead>

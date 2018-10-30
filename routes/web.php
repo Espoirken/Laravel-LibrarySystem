@@ -52,6 +52,7 @@ Route::get('/transaction', [
     'as' => 'transaction',
 ]);
 
+// Route::resource('books', 'BookController');
 Route::get('/books', [
     'uses' => 'BookController@index',
     'as' => 'books',
@@ -83,13 +84,33 @@ Route::get('/books/delete/{id}', [
 ]);
 
 Route::get('/books/borrow', [
-    'uses' => 'BookController@index_borrow',
-    'as' => 'borrows.index',
+    'uses' => 'BookController@borrow_index',
+    'as' => 'borrow.index',
 ]);
 
-Route::post('/books/borrows/', [
+Route::post('/books/borrows', [
     'uses' => 'BookController@borrow',
     'as' => 'books.borrow',
+]);
+
+Route::get('/books/return', [
+    'uses' => 'BookController@index_return',
+    'as' => 'return.index',
+]);
+
+Route::post('/books/returns', [
+    'uses' => 'BookController@return',
+    'as' => 'books.return',
+]);
+
+Route::get('/books/reserve', [
+    'uses' => 'BookController@index_reserve',
+    'as' => 'reserve.index',
+]);
+
+Route::post('/books/reserve', [
+    'uses' => 'BookController@reserve',
+    'as' => 'books.reserve',
 ]);
 
 Route::resource('categories', 'CategoryController');
@@ -138,19 +159,21 @@ Route::get('/myproductsDeleteAll', [
     'as' => 'reports',
 ]);
 
+// Route::get('user-lists', 'SearchUserController@user_lists');
 
+// Route::get('/search/{searchKey}', 'UserController@search');
 
-Route::get('/results', function(){
-    if (App\Post::first()) {    
-    $posts = App\Post::where('book_title', 'like', '%' . request('query') . '%')->get();
-    return view('results')->with('posts', $posts);
-    }
-    else{
-        toastr()->error('No results found!');
-        return redirect('/');
-    }
+// Route::get('/results', function(){
+//     if (App\Post::first()) {    
+//     $posts = App\Post::where('book_title', 'like', '%' . request('query') . '%')->get();
+//     return view('results')->with('posts', $posts);
+//     }
+//     else{
+//         toastr()->error('No results found!');
+//         return redirect('/');
+//     }
     
-});
+// });
 
 Auth::routes();
 

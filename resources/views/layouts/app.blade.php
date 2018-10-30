@@ -18,6 +18,11 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $('#users').select2();
+            
+        });
+        
+        $(document).ready(function() {
+            $('#books').select2();
         });
     </script>
     
@@ -30,6 +35,112 @@
                    checkboxes[i].checked = source.checked;
            }
        }
+    </script>
+
+    <!-- Search-->
+    <script>
+        function myFunction() {
+            // Declare variables 
+            var input, filter, table, tr, td, i;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+        
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            td1 = tr[i].getElementsByTagName("td")[1];
+            td2 = tr[i].getElementsByTagName("td")[2];
+            td3 = tr[i].getElementsByTagName("td")[3];
+            td4 = tr[i].getElementsByTagName("td")[4];
+            td5 = tr[i].getElementsByTagName("td")[5];
+            td6 = tr[i].getElementsByTagName("td")[6];
+            if (td||td1||td2||td3||td4||td5||td6) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+                } 
+                else if (td1.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+                } 
+                else if (td2.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+                } 
+                else if (td3.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+                } 
+                else if (td4.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+                } 
+                else if (td5.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+                } 
+                else if (td6.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+                } 
+                else {
+                tr[i].style.display = "none";
+                }
+            } 
+            }
+        }
+    </script>
+
+    <!-- Search book-->
+    <script>
+        function myFunction() {
+            // Declare variables 
+            var input, filter, table, tr, td, i;
+            input = document.getElementById("borrowInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("borrowTable");
+            tr = table.getElementsByTagName("tr");
+        
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < 1000; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            td1 = tr[i].getElementsByTagName("td")[1];
+            td2 = tr[i].getElementsByTagName("td")[2];
+            td3 = tr[i].getElementsByTagName("td")[3];
+            td4 = tr[i].getElementsByTagName("td")[4];
+            td5 = tr[i].getElementsByTagName("td")[5];
+            td6 = tr[i].getElementsByTagName("td")[6];
+            td7 = tr[i].getElementsByTagName("td")[7];
+            td8 = tr[i].getElementsByTagName("td")[8];
+            if (td||td1||td2||td3||td4||td5||td6||td7||td8) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+                } 
+                else if (td1.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+                } 
+                else if (td2.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+                } 
+                else if (td3.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+                } 
+                else if (td4.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+                } 
+                else if (td5.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+                } 
+                else if (td6.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+                } 
+                else if (td7.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+                } 
+                else if (td8.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+                } 
+                else {
+                tr[i].style.display = "none";
+                }
+            } 
+            }
+        }
     </script>
 
     <!-- Fonts -->
@@ -68,9 +179,9 @@
                             </a>
 
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="{{ route('borrows.index')}}"><i class="fa fa-book-open"></i> Borrow Book</a>
-                                {{-- <a class="dropdown-item" href="{{ route('books.borrow')}}"><i class="fa fa-undo"></i> Return Book</a> --}}
-                                {{-- <a class="dropdown-item" href="{{ route('books.return')}}"><i class="fas fa-book"></i> Reserve Books</a> --}}
+                                <a class="dropdown-item" href="{{ route('borrow.index') }}"><i class="fa fa-book-open"></i> Borrow Book</a>
+                                <a class="dropdown-item" href="{{ route('return.index') }}"><i class="fa fa-undo"></i> Return Book</a>
+                                <a class="dropdown-item" href="{{ route('books.reserve') }}"><i class="fas fa-book"></i> Reserve Books</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">

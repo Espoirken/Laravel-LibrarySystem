@@ -147,7 +147,11 @@ class UserController extends Controller
         return redirect('users');
     }
 
-    public function search(){
-        
-    }
+//     public function search($searchKey){
+//         $users = $this->toArray();
+
+//         $users['type_id'] = $this->type_id['user_type'];
+
+//         return view('search', compact('users'));
+//     }
 }

@@ -42,4 +42,13 @@ class User extends Authenticatable
     public function books(){
         return $this->belongsToMany('App\Book');
     }
+
+    // public function toSearchableArray()
+    // {
+    //     $users = $this->toArray();
+
+    //     $users['type_id'] = $this->type_id['user_type'];
+
+    //     return $users;
+    // }
 }

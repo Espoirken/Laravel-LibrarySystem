@@ -144,35 +144,97 @@ class BookController extends Controller
         //                      BORROW                      //
         //                                                  //
 
-    public function index_borrow(){
-        $books = Book::all();
-        $categories = Category::all();
-        if ($books->count() == 0||$categories->count() == 0) {
-
-            toastr()->info('Please create a book first!');
+        public function borrow_index(){
+            $books = Book::all();
+            $categories = Category::all();
+            if ($books->count() == 0||$categories->count() == 0) {
+    
+                toastr()->info('Please create a book first!');
+                return redirect()->back();
+            }
+    
+            return view('circulations.borrow')->with('books', $books)
+                                                    ->with('users', User::all());
+        }
+    
+        public function borrow(Request $request){
+            $user = User::where('id', $request->users)->first();
+            $books =  $request->books;
+            foreach ($books as $key => $book) {
+                Book::whereIn('id', [$book])->update(['status' => 'Borrowed']);
+                $user->books()->attach($book,['borrow_status' => 'Borrowed']);
+            }
+            toastr()->success('Post created successfully!');
             return redirect()->back();
         }
-
-        return view('circulations.borrows.borrow')->with('books', $books)
-                                                ->with('users', User::all());
-    }
-
-    public function borrow(Request $request){
-        $user = User::where('id', $request->users)->first();
-        $books =  $request->books;
-        foreach ($books as $key => $book) {
-            Book::where('id', [$book])->update(['status' => 'Borrowed']);
-        }
-        $user->books()->attach($book,['borrow_status' => 'Borrowed']);
-        toastr()->success('Post created successfully!');
-        return redirect()->back();
-    }
+        
         //                                                  //
         //              END OF BORROW                       //
         //                                                  //
 
-    
 
+        //                                                  //
+        //               RETURN                             //
+        //                                                  //
+        public function index_return(){
+            $books = Book::all();
+            $categories = Category::all();
+            if ($books->count() == 0||$categories->count() == 0) {
+    
+                toastr()->info('Please create a book first!');
+                return redirect()->back();
+            }
+    
+            return view('circulations.return')->with('books', $books)
+                                                    ->with('users', User::all());
+        }
+    
+        public function return(Request $request){
+            $user = User::where('id', $request->users)->first();
+            $books =  $request->books;
+            foreach ($books as $key => $book) {
+                Book::where('id', [$book])->update(['status' => 'Available']);
+                $user->books()->updateExistingPivot($book, array('borrow_status' => 'Available'), false);
+                
+            }
+            toastr()->success('Post created successfully!');
+            return redirect()->back();
+        }
+
+        //                                                  //
+        //              END OF RETURN                       //
+        //                                                  //
+
+        //                                                  //
+        //               RETURN                             //
+        //                                                  //
+        public function index_reserve(){
+            $books = Book::all();
+            $categories = Category::all();
+            if ($books->count() == 0||$categories->count() == 0) {
+    
+                toastr()->info('Please create a book first!');
+                return redirect()->back();
+            }
+    
+            return view('circulations.reserve')->with('books', $books)
+                                                    ->with('users', User::all());
+        }
+    
+        public function reserve(Request $request){
+            $user = User::where('id', $request->users)->first();
+            $books =  $request->books;
+            foreach ($books as $key => $book) {
+                Book::where('id', [$book])->update(['status' => 'Reserved']);
+            }
+            $user->books()->attach($book,['borrow_status' => 'Reserved']);
+            toastr()->success('Book reserved successfully!');
+            return redirect()->back();
+        }
+
+        //                                                  //
+        //              END OF RETURN                       //
+        //                                                  //
 
     public function deleteAll(Request $request)
     {
@@ -182,3 +244,5 @@ class BookController extends Controller
     }
 
 }
+
+

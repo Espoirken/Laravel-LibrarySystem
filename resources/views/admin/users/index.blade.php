@@ -67,7 +67,7 @@
         </div>
     </div>
 </div>
-<script>
+{{-- <script>
     function myFunction() {
         // Declare variables 
         var input, filter, table, tr, td, i;
@@ -113,7 +113,7 @@
         } 
         }
     }
-</script>
+</script> --}}
 
 {{-- <script type="text/javascript">
     $('ul.pagination').hide();

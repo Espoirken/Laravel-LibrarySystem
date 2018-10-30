@@ -17,7 +17,7 @@ class CreateBookUserTable extends Migration
             $table->increments('id');
             $table->integer('book_id');
             $table->integer('user_id');
-            $table->string('borrow_status');
+            $table->string('borrow_status')->nullable();
             $table->timestamp('date_return')->nullable();
             $table->timestamps();
         });
