@@ -18,6 +18,7 @@ class BookController extends Controller
     {
         $category = Category::find(1);
         $categories = Category::all();
+        $book_title = Book::first();
         if ($categories->count() == 0) {
 
             toastr()->info('Please create a category first!');

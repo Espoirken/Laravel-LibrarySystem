@@ -8,11 +8,12 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-    @toastr_css
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" ></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    @toastr_js
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js" defer></script>
     
     <!-- Select 2 searching-->
     <script type="text/javascript">
@@ -26,6 +27,14 @@
         });
     </script>
     
+
+
+    <!-- TEST-->
+    
+    
+    <!-- TEST-->
+
+
     <!-- Check All checkboxes-->
     <script type="text/javascript">
         function toggle(source) {
@@ -143,6 +152,39 @@
         }
     </script>
 
+    
+    <!-- Book Detail Modal -->
+    <script>
+            $(function () {
+          $('#bookDetailModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            var id = button.data('id'); // Extract info from data-* attributes
+            var book_title = button.data('book_title'); // Extract info from data-* attributes
+            var category_name = button.data('category_name'); // Extract info from data-* attributes
+            var author = button.data('author'); // Extract info from data-* attributes
+            var publisher_name = button.data('publisher_name'); // Extract info from data-* attributes
+            var copyright_year = button.data('copyright_year'); // Extract info from data-* attributes
+            var date_added = button.data('date_added'); // Extract info from data-* attributes
+            var source = button.data('source'); // Extract info from data-* attributes
+            var status = button.data('status'); // Extract info from data-* attributes
+            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            var modal = $(this);
+            modal.find('#id').val(id);
+            modal.find('#book_title').val(book_title);
+            modal.find('#category_name').val(category_name);
+            modal.find('#author').val(author);
+            modal.find('#publisher_name').val(publisher_name);
+            modal.find('#copyright_year').val(copyright_year);
+            modal.find('#date_added').val(date_added);
+            modal.find('#source').val(source);
+            modal.find('#status').val(status);
+          });
+        });
+        </script>
+
+
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
@@ -154,6 +196,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jscroll/2.4.1/jquery.jscroll.min.js"></script>
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+    @toastr_css
 </head>
 <body>
     <div id="app">

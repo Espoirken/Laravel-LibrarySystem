@@ -48,9 +48,10 @@
                             <td>{{$book->copyright_year}}</td>
                             <td>{{$book->created_at->timezone('Asia/Singapore')->format('M. d, Y - D  h:i:s A')}}</td>
                             <td>{{$book->status}}</td>
+                            
                             <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="books[]" value="{{$book->id}}">
+                                <div class="form-check" id="checkbox-container">
+                                    <input class="form-check-input" type="checkbox" id="{{$book->id}}" name="books[]" value="{{$book->id}}">
                                 </div>
                             </td>
                         </tr>
@@ -66,4 +67,15 @@
         </div>
     </div>
 </div>
+<script>
+        jQuery(function(){
+            var max = 3;
+            var checkboxes = $('input[type="checkbox"]');
+                                
+            checkboxes.change(function(){
+                var current = checkboxes.filter(':checked').length;
+                checkboxes.filter(':not(:checked)').prop('disabled', current >= max);
+            });
+        });
+        </script>
 @endsection
