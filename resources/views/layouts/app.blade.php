@@ -14,7 +14,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" ></script>
     @toastr_js
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js" defer></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.28.11/dist/sweetalert2.all.min.js"></script>
     <!-- Select 2 searching-->
     <script type="text/javascript">
         $(document).ready(function() {
@@ -163,6 +163,8 @@
             var category_name = button.data('category_name'); // Extract info from data-* attributes
             var author = button.data('author'); // Extract info from data-* attributes
             var publisher_name = button.data('publisher_name'); // Extract info from data-* attributes
+            var isbn = button.data('isbn'); // Extract info from data-* attributes
+            var edition = button.data('edition'); // Extract info from data-* attributes
             var copyright_year = button.data('copyright_year'); // Extract info from data-* attributes
             var date_added = button.data('date_added'); // Extract info from data-* attributes
             var source = button.data('source'); // Extract info from data-* attributes
@@ -175,16 +177,125 @@
             modal.find('#category_name').val(category_name);
             modal.find('#author').val(author);
             modal.find('#publisher_name').val(publisher_name);
+            modal.find('#isbn').val(isbn);
+            modal.find('#edition').val(edition);
             modal.find('#copyright_year').val(copyright_year);
             modal.find('#date_added').val(date_added);
             modal.find('#source').val(source);
             modal.find('#status').val(status);
           });
         });
-        </script>
+    </script>
+
+    {{-- DELETE --}}
+  
+
+    {{-- SWEET ALERT  DELETE--}}
+    <script>
+        $(document).ready(function(){
+            
+            $(document).on('click', '#deleteBook', function(e){
+                
+                var bookId = $(this).data('id');
+                var bookTitle = $(this).data('title');
+                SwalDelete(bookId, bookTitle);
+                e.preventDefault();
+            });
+            
+        });
+        
+        function SwalDelete(bookId, bookTitle){
+            
+            swal({
+                title: 'Are you sure?',
+                text: "Do you want to weed a book with the book title of \"" + bookTitle +"\" and Accession Number of " + bookId + "?",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, trash it!',
+                showLoaderOnConfirm: true,
+                reverseButtons:true,
+                preConfirm: function() {
+                  return new Promise(function(resolve) {
+                     $.ajax({
+                        url: '/books/delete/'+bookId,
+                        type: 'GET',
+                     })
+                     .done(function(){
+                        swal(
+                        'Trashed!',
+                        bookTitle + ' has been trashed.',
+                        'success'
+                        )
+                        window.setTimeout(function(){location.reload()},700)
+                     })
+                     .fail(function(){
+			     	swal('Oops...', 'Cannot delete the book!', 'error');
+			        });
+                  });
+                },
+                allowOutsideClick: false			  
+            });	
+            
+        }
+    </script>     
+    {{-- SWEET ALERT DELETE END--}}
 
 
+    {{-- SWEET ALERT RESTORE--}}
 
+    <script>
+        $(document).ready(function(){
+            
+            $(document).on('click', '#restoreBook', function(e){
+                
+                var bookId = $(this).data('id');
+                var bookTitle = $(this).data('title');
+                SwalRestore(bookId, bookTitle);
+                e.preventDefault();
+            });
+            
+        });
+        
+        function SwalRestore(bookId, bookTitle){
+            
+            swal({
+                title: 'Are you sure?',
+                text: "Do you want to restore a book with the book title of \"" + bookTitle +"\" and Accession Number of " + bookId + "?",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#38c172',
+                cancelButtonColor: '#6c757d',
+                confirmButtonText: 'Yes, restore it!',
+                showLoaderOnConfirm: true,
+                reverseButtons:true,
+                preConfirm: function() {
+                  return new Promise(function(resolve) {
+                     $.ajax({
+                        url: '/books/restore/'+bookId,
+                        type: 'GET',
+                     })
+                     .done(function(){
+                        swal(
+                        'Restored!',
+                        bookTitle + ' has been restored.',
+                        'success'
+                        )
+                        window.setTimeout(function(){location.reload()},700)
+                     })
+                     .fail(function(){
+			     	swal('Oops...', 'Cannot delete the book!', 'error');
+			        });
+                  });
+                },
+                allowOutsideClick: false			  
+            });	
+        }
+    </script>       
+    {{-- SWEET ALERT RESTORE END--}}
+
+    
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
@@ -193,7 +304,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.10/summernote.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jscroll/2.4.1/jquery.jscroll.min.js"></script>
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
     @toastr_css
@@ -238,6 +349,8 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ route('categories.index')}}"><i class="fas fa-list"></i> List of Categories</a>
                                 <a class="dropdown-item " data-toggle="modal" data-target="#categoryModal" href="{{ route('categories.create')}}"><i class="fas fa-plus"></i> Create a new Category</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{ route('restore.index')}}"><i class="fa fa-book-dead"></i> Weeded Books</a>
                             </div>
                         </li>
                         
@@ -308,6 +421,7 @@
             {{-- End of modal --}}
         </main>
     </div>
+    
     @toastr_render
 </body>
 </html>

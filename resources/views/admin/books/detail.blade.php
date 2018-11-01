@@ -22,6 +22,14 @@
                         <input type="text" readonly class="form-control" style="width:250px" id="book_title">
                     </div>
                     <div class="form-group mb-2">
+                        <label for="author" class="sr-only">Edition</label>
+                        <input type="text" readonly class="form-control-plaintext" value="Edition">
+                    </div>
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="author" class="sr-only">Edition</label>
+                        <input type="text" readonly class="form-control" style="width:250px" id="edition">
+                    </div>
+                    <div class="form-group mb-2">
                         <label for="category" class="sr-only">Category</label>
                         <input type="text" readonly class="form-control-plaintext" value="Category">
                     </div>
@@ -61,6 +69,15 @@
                         <label for="author" class="sr-only">Source</label>
                         <input type="text" readonly class="form-control" style="width:250px" id="source">
                     </div>
+                    <div class="form-group mb-2">
+                        <label for="author" class="sr-only">ISBN</label>
+                        <input type="text" readonly class="form-control-plaintext" value="ISBN">
+                    </div>
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="author" class="sr-only">ISBN</label>
+                        <input type="text" readonly class="form-control" style="width:250px" id="isbn">
+                    </div>
+                    
                     <div class="form-group mb-2">
                         <label for="author" class="sr-only">Date Added</label>
                         <input type="text" readonly class="form-control-plaintext" value="Date Added">

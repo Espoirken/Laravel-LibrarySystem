@@ -113,6 +113,16 @@ Route::post('/books/reserve', [
     'as' => 'books.reserve',
 ]);
 
+Route::get('/books/restore', [
+    'uses' => 'BookController@index_restore',
+    'as' => 'restore.index',
+]);
+
+Route::get('/books/restore/{id}', [
+    'uses' => 'BookController@restore',
+    'as' => 'books.restore',
+]);
+
 Route::resource('categories', 'CategoryController');
 
 Route::get('/categories/delete/{id}', [

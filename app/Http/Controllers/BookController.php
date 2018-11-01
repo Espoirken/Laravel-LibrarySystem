@@ -133,9 +133,9 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $books = Book::find($id);
+        $books = Book::find($request->id);
         $books->delete();
         toastr()->error('The book is deleted!');
         return redirect()->back();
@@ -242,6 +242,21 @@ class BookController extends Controller
         $ids = $request->ids;
         DB::table("products")->whereIn('id',explode(",",$ids))->delete();
         return response()->json(['success'=>"Products Deleted successfully."]);
+    }
+
+    public function index_restore(){
+        
+        $books = Book::onlyTrashed()->get();
+        
+        return view('admin.books.restore')->with('books', $books)
+                                        ->with('users', User::first());
+    }
+
+    public function restore($id){
+        $books = Book::withTrashed()->where('id', $id)->get()->first();
+        $books->restore();
+        toastr()->success('The book was restored successfully!');
+        return redirect()->back();
     }
 
 }

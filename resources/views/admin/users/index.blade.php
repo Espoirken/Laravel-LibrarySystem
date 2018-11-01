@@ -14,7 +14,7 @@
                 <thead>
                     <tr>
                         <th><input type="checkbox" onclick="toggle(this);"></th>
-                        <th>ID</th>
+                        <th>STUDENT NUMBER</th>
                         <th>NAME</th>
                         <th>CONTACT</th>
                         <th>ADDRESS</th>

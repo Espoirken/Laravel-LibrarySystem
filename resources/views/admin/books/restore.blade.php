@@ -7,10 +7,9 @@
     <div class="card">
         <div class="card-body">
             @include('admin.books.detail')
-            <a href="{{ route('books.create')}}"  class="btn btn-sm btn-success float-right"><i class="fa fa-plus"></i> Create New Book</a>
-            <h2 class="card-title">Books</h2>
+            <a href="{{ route('books')}}"  class="btn btn-sm btn-primary float-right"><i class="fa fa-search"></i> Show all Books</a>
+            <h2 class="card-title">Trashed Books</h2>
             <table class="table">
-                
                 <thead>
                     <tr>
                         <th>ACCESSION</th>
@@ -20,10 +19,10 @@
                         <th>PUBLISHER</th>
                         <th>COPYRIGHT</th>
                         <th>SOURCE</th>
-                        {{-- <th>DATE ADDED</th> --}}
-                        <th>STATUS</th>
-                        <th>EDIT</th>
-                        <th>DELETE</th>
+                        <th>DATE DELETED</th>
+                        {{-- <th>STATUS</th> --}}
+                        <th>RESTORE</th>
+                        {{-- <th>DELETE</th> --}}
                     </tr>
                 </thead>
                 <tbody>
@@ -53,9 +52,9 @@
                         <td>{{$book->copyright_year}}</td>
                         <td>{{$book->source}}</td>
                         {{-- <td>{{$book->created_at->timezone('Asia/Singapore')->format('M. d, Y - D  h:i:s A')}}</td> --}}
-                        <td>{{$book->status}}</td>
-                        <td><a class="btn btn-sm btn-primary" href="{{ route('books.edit', ['id' => $book->id ])}}"><i class="fa fa-edit"></i> Edit</a></td>
-                        <td><a class="btn btn-sm btn-danger" id="deleteBook" data-id="{{$book->id}}" data-title="{{$book->book_title}}" href="{{ route('books.delete', ['id' => $book->id])}}"><i class="fa fa-trash" aria-hidden="true"></i> Trash</a></td>
+                        <td>{{$book->deleted_at->timezone('Asia/Singapore')->format('M. d, Y - D  h:i:s A')}}</td>
+                        <td><a class="btn btn-sm btn-success" id="restoreBook" data-id="{{$book->id}}" data-title="{{$book->book_title}}" href="{{ route('books.restore', ['id' => $book->id ])}}"><i class="fa fa-undo"></i> Restore</a></td>
+                        {{-- <td><a class="btn btn-sm btn-danger" href="{{ route('books.delete', ['id' => $book->id])}}"><i class="fa fa-trash" aria-hidden="true"></i> Delete</a></td> --}}
                     </tr>
                     @endforeach
                     @else
@@ -66,7 +65,6 @@
                 </tbody>
             </table>
         </div>
-        <div class="d-flex justify-content-center" >{{$books->links()}}</div> 
     </div>
 </div>
 @endsection
