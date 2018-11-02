@@ -7,8 +7,19 @@
     <div class="card">
         <div class="card-body">
             @include('admin.books.detail')
-            <a href="{{ route('books.create')}}"  class="btn btn-sm btn-success float-right"><i class="fa fa-plus"></i> Create New Book</a>
-            <h2 class="card-title">Books</h2>
+            <div class="row">
+            <div class="col-lg-2"><h2 class="card-title">Books</h2></div>
+            <div class="col-lg-6">
+            <form class="form-inline" action="{{ route('search.books')}}" method="POST">
+                <div class="form-group">
+                    @csrf
+                    <input type="text" name="search" class="form-control mx-sm-3" style="width:600px" placeholder="Search a book...">
+                    <input type="submit" class="btn btn-primary" class="form-control" value="Search">
+                </div>
+              </form>
+            </div>
+            <div class="col-lg-1 offset-lg-3"><a href="{{ route('books.create')}}"  class="btn btn-sm btn-success float-right"><i class="fa fa-plus"></i> Create New Book</a></div>
+            </div>
             <table class="table">
                 
                 <thead>

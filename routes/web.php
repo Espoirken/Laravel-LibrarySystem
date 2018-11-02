@@ -169,21 +169,10 @@ Route::get('/myproductsDeleteAll', [
     'as' => 'reports',
 ]);
 
-// Route::get('user-lists', 'SearchUserController@user_lists');
-
-// Route::get('/search/{searchKey}', 'UserController@search');
-
-// Route::get('/results', function(){
-//     if (App\Post::first()) {    
-//     $posts = App\Post::where('book_title', 'like', '%' . request('query') . '%')->get();
-//     return view('results')->with('posts', $posts);
-//     }
-//     else{
-//         toastr()->error('No results found!');
-//         return redirect('/');
-//     }
-    
-// });
+Route::any('/search/books', [
+    'uses' => 'BookController@search',
+    'as' => 'search.books',
+]);
 
 Auth::routes();
 

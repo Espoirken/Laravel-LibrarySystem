@@ -18,12 +18,16 @@
     <!-- Select 2 searching-->
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#users').select2();
+            $('#users').select2({
+                placeholder: "Select a user...",
+            });
             
         });
         
         $(document).ready(function() {
-            $('#books').select2();
+            $('#books').select2({
+                placeholder: "Select a state",
+            });
         });
     </script>
     
@@ -187,10 +191,61 @@
         });
     </script>
 
-    {{-- DELETE --}}
+    {{-- BOOK DETAIL MODAL END --}}
   
 
-    {{-- SWEET ALERT  DELETE--}}
+    {{-- SWEET ALERT  DELETE USER--}}
+    <script>
+        $(document).ready(function(){
+            
+            $(document).on('click', '#deleteUser', function(e){
+                
+                var userId = $(this).data('id');
+                var name = $(this).data('name');
+                SwalDeleteUser(userId, name);
+                e.preventDefault();
+            });
+            
+        });
+        
+        function SwalDeleteUser(userId, name){
+            swal({
+                title: 'Are you sure?',
+                text: userId + ", " + name+" will be deleted permanently!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, trash it!',
+                showLoaderOnConfirm: true,
+                reverseButtons:true,
+                preConfirm: function() {
+                  return new Promise(function(resolve) {
+                     $.ajax({
+                        url: '/users/delete/'+userId,
+                        type: 'GET',
+                     })
+                     .done(function(){
+                        swal(
+                        'Deleted!',
+                        userId + " : " + name+' has been deleted.',
+                        'success'
+                        )
+                        window.setTimeout(function(){location.reload()},700)
+                     })
+                     .fail(function(){
+			     	swal('Oops...', 'Cannot delete the book!', 'error');
+			        });
+                  });
+                },
+                allowOutsideClick: false			  
+            });	
+            
+        }
+    </script>     
+    {{-- SWEET ALERT DELETE USER END--}}
+
+    {{-- SWEET ALERT  DELETE BOOK --}}
     <script>
         $(document).ready(function(){
             
@@ -208,7 +263,7 @@
             
             swal({
                 title: 'Are you sure?',
-                text: "Do you want to weed a book with the book title of \"" + bookTitle +"\" and Accession Number of " + bookId + "?",
+                text: " \"" +bookId + ", "+ bookTitle + "\" will be stored into the weeded books",
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',

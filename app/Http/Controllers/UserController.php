@@ -143,7 +143,6 @@ class UserController extends Controller
     {
         $users = User::find($id);
         $users->delete();
-        toastr()->error('The user is deleted!');
         return redirect('users');
     }
 

@@ -52,7 +52,7 @@
                             <td>{{$user->year_level->year_level}}</td>
                             <td>{{$user->status}}</td>
                             <td><a class="btn btn-sm btn-primary" href="{{ route('users.edit', ['id' => $user->id])}}"><i class="fa fa-user-edit"></i> Edit</a></td>
-                            <td><a class="btn btn-sm btn-danger" onclick="return confirm('Deleting a user will permanently remove it from your system.')" href="{{ route('users.delete', ['id' => $user->id])}}"><i class="fa fa-user-times"></i> Delete</a></td>
+                            <td><a class="btn btn-sm btn-danger" id="deleteUser" data-id="{{$user->id}}" data-name="{{$user->name}}" href="{{ route('users.delete', ['id' => $user->id])}}"><i class="fa fa-user-times"></i> Delete</a></td>
                         </tr>
                         
                     @endforeach

@@ -10,7 +10,6 @@
                 <div class="row">
                     <div class="col-lg-2"><h2 class="card-title">Return Book</h2></div>
                     <div class="col-lg-3 offset-lg-6 form-group"> 
-                        <label for="users"><h4>Select a student</h4></label>
                         <select class="form-control" id="users" name="users">
                             <option hidden></option>
                             @foreach ($users as $user)
@@ -18,7 +17,7 @@
                             @endforeach
                         </select>   
                     </div>
-                    <div class="col-lg-1"><button class="btn btn-sm btn-primary float-right" type="submit"><i class="fa fa-undo"></i> Return</button></div>
+                    <div class="col-lg-1"><button class="btn btn-sm btn-success float-right" type="submit"><i class="fa fa-undo"></i> Return</button></div>
                 </div>
                 <table class="table">
                     <thead>

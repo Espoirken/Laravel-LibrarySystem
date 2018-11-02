@@ -10,7 +10,6 @@
                 <div class="row">
                     <div class="col-lg-2"><h2 class="card-title">Borrow Book</h2></div>
                     <div class="col-lg-3 offset-lg-6 form-group"> 
-                        <label for="users"><h4>Select a student</h4></label>
                         <select class="form-control" id="users" name="users">
                             <option hidden></option>
                             @foreach ($users as $user)
