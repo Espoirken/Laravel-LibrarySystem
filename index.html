@@ -1,12 +1,1140 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="6ryztuhUWARgmI8eI861nRwooqipcUdUABWG0En7">
+
+    <title>Library System</title>
+    <!-- Scripts -->
+    <script src="http://librarysystem.com/js/app.js" defer></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" ></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.28.11/dist/sweetalert2.all.min.js"></script>
+    <!-- Select 2 searching-->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#users').select2({
+                placeholder: "Select a user...",
+            });
+            
+        });
+        
+        $(document).ready(function() {
+            $('#books').select2({
+                placeholder: "Select a state",
+            });
+        });
+    </script>
+    
+
+
+    <!-- TEST-->
+    
+    
+    <!-- TEST-->
+
+
+    <!-- Check All checkboxes-->
+    <script type="text/javascript">
+        function toggle(source) {
+           var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+           for (var i = 0; i < checkboxes.length; i++) {
+               if (checkboxes[i] != source)
+                   checkboxes[i].checked = source.checked;
+           }
+       }
+    </script>
+
+    <!-- Search-->
+    <script>
+        function myFunction() {
+            // Declare variables 
+            var input, filter, table, tr, td, i;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+        
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            td1 = tr[i].getElementsByTagName("td")[1];
+            td2 = tr[i].getElementsByTagName("td")[2];
+            td3 = tr[i].getElementsByTagName("td")[3];
+            td4 = tr[i].getElementsByTagName("td")[4];
+            td5 = tr[i].getElementsByTagName("td")[5];
+            td6 = tr[i].getElementsByTagName("td")[6];
+            if (td||td1||td2||td3||td4||td5||td6) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+                } 
+                else if (td1.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+                } 
+                else if (td2.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+                } 
+                else if (td3.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+                } 
+                else if (td4.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+                } 
+                else if (td5.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+                } 
+                else if (td6.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+                } 
+                else {
+                tr[i].style.display = "none";
+                }
+            } 
+            }
+        }
+    </script>
+
+    <!-- Search book-->
+    <script>
+        function myFunction() {
+            // Declare variables 
+            var input, filter, table, tr, td, i;
+            input = document.getElementById("borrowInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("borrowTable");
+            tr = table.getElementsByTagName("tr");
+        
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < 1000; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            td1 = tr[i].getElementsByTagName("td")[1];
+            td2 = tr[i].getElementsByTagName("td")[2];
+            td3 = tr[i].getElementsByTagName("td")[3];
+            td4 = tr[i].getElementsByTagName("td")[4];
+            td5 = tr[i].getElementsByTagName("td")[5];
+            td6 = tr[i].getElementsByTagName("td")[6];
+            td7 = tr[i].getElementsByTagName("td")[7];
+            td8 = tr[i].getElementsByTagName("td")[8];
+            if (td||td1||td2||td3||td4||td5||td6||td7||td8) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+                } 
+                else if (td1.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+                } 
+                else if (td2.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+                } 
+                else if (td3.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+                } 
+                else if (td4.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+                } 
+                else if (td5.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+                } 
+                else if (td6.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+                } 
+                else if (td7.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+                } 
+                else if (td8.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+                } 
+                else {
+                tr[i].style.display = "none";
+                }
+            } 
+            }
+        }
+    </script>
+
+    
+    <!-- Book Detail Modal -->
+    <script>
+            $(function () {
+          $('#bookDetailModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            var id = button.data('id'); // Extract info from data-* attributes
+            var book_title = button.data('book_title'); // Extract info from data-* attributes
+            var category_name = button.data('category_name'); // Extract info from data-* attributes
+            var author_name = button.data('author_name'); // Extract info from data-* attributes
+            var publisher_name = button.data('publisher_name'); // Extract info from data-* attributes
+            var isbn = button.data('isbn'); // Extract info from data-* attributes
+            var edition = button.data('edition'); // Extract info from data-* attributes
+            var copyright_year = button.data('copyright_year'); // Extract info from data-* attributes
+            var date_added = button.data('date_added'); // Extract info from data-* attributes
+            var source = button.data('source'); // Extract info from data-* attributes
+            var status = button.data('status'); // Extract info from data-* attributes
+            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            var modal = $(this);
+            modal.find('#id').val(id);
+            modal.find('#book_title').val(book_title);
+            modal.find('#category_name').val(category_name);
+            modal.find('#author_name').val(author_name);
+            modal.find('#publisher_name').val(publisher_name);
+            modal.find('#isbn').val(isbn);
+            modal.find('#edition').val(edition);
+            modal.find('#copyright_year').val(copyright_year);
+            modal.find('#date_added').val(date_added);
+            modal.find('#source').val(source);
+            modal.find('#status').val(status);
+          });
+        });
+    </script>
+
+    
+  
+
+    
+    <script>
+        $(document).ready(function(){
+            
+            $(document).on('click', '#deleteUser', function(e){
+                
+                var userId = $(this).data('id');
+                var name = $(this).data('name');
+                SwalDeleteUser(userId, name);
+                e.preventDefault();
+            });
+            
+        });
+        
+        function SwalDeleteUser(userId, name){
+            swal({
+                title: 'Are you sure?',
+                text: userId + ", " + name+" will be deleted permanently!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, trash it!',
+                showLoaderOnConfirm: true,
+                reverseButtons:true,
+                preConfirm: function() {
+                  return new Promise(function(resolve) {
+                     $.ajax({
+                        url: '/users/delete/'+userId,
+                        type: 'GET',
+                     })
+                     .done(function(){
+                        swal(
+                        'Deleted!',
+                        userId + " : " + name+' has been deleted.',
+                        'success'
+                        )
+                        window.setTimeout(function(){location.reload()},700)
+                     })
+                     .fail(function(){
+			     	swal('Oops...', 'Cannot delete the book!', 'error');
+			        });
+                  });
+                },
+                allowOutsideClick: false			  
+            });	
+            
+        }
+    </script>     
+    
+
+    
+    <script>
+        $(document).ready(function(){
+            
+            $(document).on('click', '#deleteBook', function(e){
+                
+                var bookId = $(this).data('id');
+                var bookTitle = $(this).data('title');
+                SwalDelete(bookId, bookTitle);
+                e.preventDefault();
+            });
+            
+        });
+        
+        function SwalDelete(bookId, bookTitle){
+            
+            swal({
+                title: 'Are you sure?',
+                text: " \"" +bookId + ", "+ bookTitle + "\" will be stored into the weeded books",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, trash it!',
+                showLoaderOnConfirm: true,
+                reverseButtons:true,
+                preConfirm: function() {
+                  return new Promise(function(resolve) {
+                     $.ajax({
+                        url: '/books/delete/'+bookId,
+                        type: 'GET',
+                     })
+                     .done(function(){
+                        swal(
+                        'Trashed!',
+                        bookTitle + ' has been trashed.',
+                        'success'
+                        )
+                        window.setTimeout(function(){location.reload()},700)
+                     })
+                     .fail(function(){
+			     	swal('Oops...', 'Cannot delete the book!', 'error');
+			        });
+                  });
+                },
+                allowOutsideClick: false			  
+            });	
+            
+        }
+    </script>     
+    
+
+
+    
+
+    <script>
+        $(document).ready(function(){
+            
+            $(document).on('click', '#restoreBook', function(e){
+                
+                var bookId = $(this).data('id');
+                var bookTitle = $(this).data('title');
+                SwalRestore(bookId, bookTitle);
+                e.preventDefault();
+            });
+            
+        });
+        
+        function SwalRestore(bookId, bookTitle){
+            
+            swal({
+                title: 'Are you sure?',
+                text: "Do you want to restore a book with the book title of \"" + bookTitle +"\" and Accession Number of " + bookId + "?",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#38c172',
+                cancelButtonColor: '#6c757d',
+                confirmButtonText: 'Yes, restore it!',
+                showLoaderOnConfirm: true,
+                reverseButtons:true,
+                preConfirm: function() {
+                  return new Promise(function(resolve) {
+                     $.ajax({
+                        url: '/books/restore/'+bookId,
+                        type: 'GET',
+                     })
+                     .done(function(){
+                        swal(
+                        'Restored!',
+                        bookTitle + ' has been restored.',
+                        'success'
+                        )
+                        window.setTimeout(function(){location.reload()},700)
+                     })
+                     .fail(function(){
+			     	swal('Oops...', 'Cannot delete the book!', 'error');
+			        });
+                  });
+                },
+                allowOutsideClick: false			  
+            });	
+        }
+    </script>       
+    
+
+    
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+
+    <!-- Styles -->
+    <link href="http://librarysystem.com/css/app.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.10/summernote.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jscroll/2.4.1/jquery.jscroll.min.js"></script>
+    <link href="http://librarysystem.com/css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css"></head>
 <body>
-    <a href="/resources/views/admin/books/index.blade.php">Click me</a>
-</body>
+    <div id="app">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+            <img src=" http://librarysystem.com/uploads/default_image/1.jpeg" width="30" height="30" style="margin:10px" class="rounded-circle" alt="avatar"></a>
+            <a class="navbar-brand" href="#">Library System</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- Left Side Of Navbar -->
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://librarysystem.com/dashboard"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://librarysystem.com/attendance"><i class="fa fa-address-book" aria-hidden="true"></i> Attendances</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-book" aria-hidden="true"></i> Circulations
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" href="http://librarysystem.com/books/borrow"><i class="fa fa-book-open"></i> Borrow Book</a>
+                                <a class="dropdown-item" href="http://librarysystem.com/books/return"><i class="fa fa-undo"></i> Return Book</a>
+                                <a class="dropdown-item" href="http://librarysystem.com/books/reserve"><i class="fas fa-book"></i> Reserve Books</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-book" aria-hidden="true"></i> Books
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" href="http://librarysystem.com/books"><i class="fa fa-book"></i> List of Books</a>
+                                <a class="dropdown-item" href="http://librarysystem.com/books/create"><i class="fa fa-plus"></i> Create a new Book</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="http://librarysystem.com/authors"><i class="fas fa-user"></i> List of Authors</a>
+                                <a class="dropdown-item " data-toggle="modal" data-target="#authorModal" href="http://librarysystem.com/authors/create"><i class="fas fa-plus"></i> Create a new Author</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="http://librarysystem.com/categories"><i class="fas fa-list"></i> List of Categories</a>
+                                <a class="dropdown-item " data-toggle="modal" data-target="#categoryModal" href="http://librarysystem.com/categories/create"><i class="fas fa-plus"></i> Create a new Category</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="http://librarysystem.com/books/restore"><i class="fa fa-book-dead"></i> Weeded Books</a>
+                            </div>
+                        </li>
+                        
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-users" aria-hidden="true"></i>  Users
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">  
+                                <a class="dropdown-item" href="http://librarysystem.com/users"><i class="fa fa-users"></i> List of Users</a>
+                                <a class="dropdown-item" href="http://librarysystem.com/users/create"><i class="fa fa-plus"></i> Create a new User</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="http://librarysystem.com/types"><i class="fa fa-user-tag" aria-hidden="true"></i> Types of User</a>
+                                <a class="dropdown-item " data-toggle="modal" data-target="#typesModal" href="http://librarysystem.com/types/create"><i class="fa fa fa-plus"></i> Create a new Type of User</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="http://librarysystem.com/year_levels"><i class="fa fa-graduation-cap" aria-hidden="true"></i> List of Year levels</a>
+                                <a class="dropdown-item " data-toggle="modal" data-target="#yearLevelModal" href="http://librarysystem.com/year_levels/create"><i class="fa fa fa-plus"></i> Create a new Year level of User</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://librarysystem.com/settings"><i class="fa fa-cog" aria-hidden="true"></i> Settings</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://librarysystem.com/myproductsDeleteAll"><i class="fa fa-chart-bar" aria-hidden="true"></i> Reports</a>
+                        </li>
+                    </ul>
+
+                    <!-- Right Side Of Navbar -->
+                    <ul class="navbar-nav ml-auto">
+                        <!-- Authentication Links -->
+                                                    <li class="nav-item">
+                                <a class="nav-link" href="http://librarysystem.com/login">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                                                    <a class="nav-link" href="http://librarysystem.com/register">Register</a>
+                                                            </li>
+                                            </ul>
+                </div>
+        </nav>
+
+        <main class="py-4">
+            <div class="modal fade" role="dialog" tabindex="-1" id="bookDetailModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+                  <h5 class="modal-title">Book Detail</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <form class="form-inline">
+                    <div class="form-group mb-2">
+                        <input type="text" readonly class="form-control-plaintext" value="Accession Number">
+                    </div>
+                    <div class="form-group mx-sm-3 mb-2">
+                        <input type="text" readonly class="form-control" style="width:250px" id="id">
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="book_title" class="sr-only">Book Title</label>
+                        <input type="text" readonly class="form-control-plaintext" value="Book Title">
+                    </div>
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="book_title" class="sr-only">Book Title</label>
+                        <input type="text" readonly class="form-control" style="width:250px" id="book_title">
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="author" class="sr-only">Edition</label>
+                        <input type="text" readonly class="form-control-plaintext" value="Edition">
+                    </div>
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="author" class="sr-only">Edition</label>
+                        <input type="text" readonly class="form-control" style="width:250px" id="edition">
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="category" class="sr-only">Category</label>
+                        <input type="text" readonly class="form-control-plaintext" value="Category">
+                    </div>
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="category" class="sr-only">Category</label>
+                        <input type="text" readonly class="form-control" style="width:250px" id="category_name">
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="author" class="sr-only">Author</label>
+                        <input type="text" readonly class="form-control-plaintext" value="Author">
+                    </div>
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="author" class="sr-only">Author</label>
+                        <input type="text" readonly class="form-control" style="width:250px" id="author_name">
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="author" class="sr-only">Publisher Name</label>
+                        <input type="text" readonly class="form-control-plaintext" value="Publisher Name">
+                    </div>
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="author" class="sr-only">Publisher Name</label>
+                        <input type="text" readonly class="form-control" style="width:250px" id="publisher_name">
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="author" class="sr-only">Copyright Year</label>
+                        <input type="text" readonly class="form-control-plaintext" value="Copyright Year">
+                    </div>
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="author" class="sr-only">Copyright Year</label>
+                        <input type="text" readonly class="form-control" style="width:250px" id="copyright_year">
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="author" class="sr-only">Source</label>
+                        <input type="text" readonly class="form-control-plaintext" value="Source">
+                    </div>
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="author" class="sr-only">Source</label>
+                        <input type="text" readonly class="form-control" style="width:250px" id="source">
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="author" class="sr-only">ISBN</label>
+                        <input type="text" readonly class="form-control-plaintext" value="ISBN">
+                    </div>
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="author" class="sr-only">ISBN</label>
+                        <input type="text" readonly class="form-control" style="width:250px" id="isbn">
+                    </div>
+                    
+                    <div class="form-group mb-2">
+                        <label for="author" class="sr-only">Date Added</label>
+                        <input type="text" readonly class="form-control-plaintext" value="Date Added">
+                    </div>
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="author" class="sr-only">Date Added</label>
+                        <input type="text" readonly class="form-control" style="width:250px" id="date_added">
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="author" class="sr-only">Status</label>
+                        <input type="text" readonly class="form-control-plaintext" value="Status">
+                    </div>
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="author" class="sr-only">Status</label>
+                        <input type="text" readonly class="form-control" style="width:250px" id="status">
+                    </div>
+                </form>
+                </form>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div><div class="container-fluid">
+    <div class="card">
+        <div class="card-body">
+            <div class="modal fade" role="dialog" tabindex="-1" id="bookDetailModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+                  <h5 class="modal-title">Book Detail</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <form class="form-inline">
+                    <div class="form-group mb-2">
+                        <input type="text" readonly class="form-control-plaintext" value="Accession Number">
+                    </div>
+                    <div class="form-group mx-sm-3 mb-2">
+                        <input type="text" readonly class="form-control" style="width:250px" id="id">
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="book_title" class="sr-only">Book Title</label>
+                        <input type="text" readonly class="form-control-plaintext" value="Book Title">
+                    </div>
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="book_title" class="sr-only">Book Title</label>
+                        <input type="text" readonly class="form-control" style="width:250px" id="book_title">
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="author" class="sr-only">Edition</label>
+                        <input type="text" readonly class="form-control-plaintext" value="Edition">
+                    </div>
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="author" class="sr-only">Edition</label>
+                        <input type="text" readonly class="form-control" style="width:250px" id="edition">
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="category" class="sr-only">Category</label>
+                        <input type="text" readonly class="form-control-plaintext" value="Category">
+                    </div>
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="category" class="sr-only">Category</label>
+                        <input type="text" readonly class="form-control" style="width:250px" id="category_name">
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="author" class="sr-only">Author</label>
+                        <input type="text" readonly class="form-control-plaintext" value="Author">
+                    </div>
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="author" class="sr-only">Author</label>
+                        <input type="text" readonly class="form-control" style="width:250px" id="author_name">
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="author" class="sr-only">Publisher Name</label>
+                        <input type="text" readonly class="form-control-plaintext" value="Publisher Name">
+                    </div>
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="author" class="sr-only">Publisher Name</label>
+                        <input type="text" readonly class="form-control" style="width:250px" id="publisher_name">
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="author" class="sr-only">Copyright Year</label>
+                        <input type="text" readonly class="form-control-plaintext" value="Copyright Year">
+                    </div>
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="author" class="sr-only">Copyright Year</label>
+                        <input type="text" readonly class="form-control" style="width:250px" id="copyright_year">
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="author" class="sr-only">Source</label>
+                        <input type="text" readonly class="form-control-plaintext" value="Source">
+                    </div>
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="author" class="sr-only">Source</label>
+                        <input type="text" readonly class="form-control" style="width:250px" id="source">
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="author" class="sr-only">ISBN</label>
+                        <input type="text" readonly class="form-control-plaintext" value="ISBN">
+                    </div>
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="author" class="sr-only">ISBN</label>
+                        <input type="text" readonly class="form-control" style="width:250px" id="isbn">
+                    </div>
+                    
+                    <div class="form-group mb-2">
+                        <label for="author" class="sr-only">Date Added</label>
+                        <input type="text" readonly class="form-control-plaintext" value="Date Added">
+                    </div>
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="author" class="sr-only">Date Added</label>
+                        <input type="text" readonly class="form-control" style="width:250px" id="date_added">
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="author" class="sr-only">Status</label>
+                        <input type="text" readonly class="form-control-plaintext" value="Status">
+                    </div>
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="author" class="sr-only">Status</label>
+                        <input type="text" readonly class="form-control" style="width:250px" id="status">
+                    </div>
+                </form>
+                </form>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>            <div class="row">
+            <div class="col-lg-2"><h2 class="card-title">Books</h2></div>
+            <div class="col-lg-6">
+            <form class="form-inline" action="http://librarysystem.com/search/books" method="POST">
+                <div class="form-group">
+                    <input type="hidden" name="_token" value="6ryztuhUWARgmI8eI861nRwooqipcUdUABWG0En7">                    <input type="text" name="search" class="form-control mx-sm-3" style="width:600px" placeholder="Search a book...">
+                    <input type="submit" class="btn btn-primary" class="form-control" value="Search">
+                </div>
+              </form>
+            </div>
+            <div class="col-lg-1 offset-lg-3"><a href="http://librarysystem.com/books/create"  class="btn btn-sm btn-success float-right"><i class="fa fa-plus"></i> Create New Book</a></div>
+            </div>
+            <table class="table">
+                
+                <thead>
+                    <tr>
+                        <th>ACCESSION</th>
+                        <th>TITLE</th>
+                        <th>CATEGORY</th>
+                        <th>AUTHOR</th>
+                        <th>PUBLISHER</th>
+                        <th>COPYRIGHT</th>
+                        <th>SOURCE</th>
+                        
+                        <th>STATUS</th>
+                        <th>EDIT</th>
+                        <th>DELETE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                                                            <tr>
+                        <td>1</td>
+                        <td> 
+                            <a data-toggle="modal" href="#bookDetailModal" 
+                            data-id="1" 
+                            data-book_title="Dare Ltd" 
+                            data-category_name="Felicita" 
+                            data-author_name="Beahan" 
+                            data-publisher_name="Patricia Jakubowski" 
+                            data-isbn="18198" 
+                            data-edition="3" 
+                            data-copyright_year="2001" 
+                            data-source="Chyna Schultz DVM" 
+                            data-date_added="Dec. 12, 2018 - Wed  08:38:18 AM" 
+                            data-status="Available" 
+                            > 
+                            Dare Ltd
+                        </td>
+                        <td>Felicita</td>
+                        <td>Beahan</td>
+                        <td>Patricia Jakubowski</td>
+                        <td>2001</td>
+                        <td>Chyna Schultz DVM</td>
+                        
+                        <td>Available</td>
+                        <td><a class="btn btn-sm btn-primary" href="http://librarysystem.com/books/edit/1"><i class="fa fa-edit"></i> Edit</a></td>
+                        <td><a class="btn btn-sm btn-danger" id="deleteBook" data-id="1" data-title="Dare Ltd" href="http://librarysystem.com/books/delete/1"><i class="fa fa-trash" aria-hidden="true"></i> Trash</a></td>
+                    </tr>
+                                        <tr>
+                        <td>2</td>
+                        <td> 
+                            <a data-toggle="modal" href="#bookDetailModal" 
+                            data-id="2" 
+                            data-book_title="Bednar-Ledner" 
+                            data-category_name="Brennan" 
+                            data-author_name="Beahan" 
+                            data-publisher_name="Nicole Brown" 
+                            data-isbn="17601" 
+                            data-edition="1" 
+                            data-copyright_year="1975" 
+                            data-source="Mrs. Genoveva Streich PhD" 
+                            data-date_added="Dec. 12, 2018 - Wed  08:38:18 AM" 
+                            data-status="Available" 
+                            > 
+                            Bednar-Ledner
+                        </td>
+                        <td>Brennan</td>
+                        <td>Beahan</td>
+                        <td>Nicole Brown</td>
+                        <td>1975</td>
+                        <td>Mrs. Genoveva Streich PhD</td>
+                        
+                        <td>Available</td>
+                        <td><a class="btn btn-sm btn-primary" href="http://librarysystem.com/books/edit/2"><i class="fa fa-edit"></i> Edit</a></td>
+                        <td><a class="btn btn-sm btn-danger" id="deleteBook" data-id="2" data-title="Bednar-Ledner" href="http://librarysystem.com/books/delete/2"><i class="fa fa-trash" aria-hidden="true"></i> Trash</a></td>
+                    </tr>
+                                        <tr>
+                        <td>3</td>
+                        <td> 
+                            <a data-toggle="modal" href="#bookDetailModal" 
+                            data-id="3" 
+                            data-book_title="Heaney, Bayer and Huel" 
+                            data-category_name="Felicita" 
+                            data-author_name="Daugherty" 
+                            data-publisher_name="Dr. Rey Heaney DVM" 
+                            data-isbn="16199" 
+                            data-edition="3" 
+                            data-copyright_year="2005" 
+                            data-source="Aida Hills" 
+                            data-date_added="Dec. 12, 2018 - Wed  08:38:18 AM" 
+                            data-status="Available" 
+                            > 
+                            Heaney, Bayer and Huel
+                        </td>
+                        <td>Felicita</td>
+                        <td>Daugherty</td>
+                        <td>Dr. Rey Heaney DVM</td>
+                        <td>2005</td>
+                        <td>Aida Hills</td>
+                        
+                        <td>Available</td>
+                        <td><a class="btn btn-sm btn-primary" href="http://librarysystem.com/books/edit/3"><i class="fa fa-edit"></i> Edit</a></td>
+                        <td><a class="btn btn-sm btn-danger" id="deleteBook" data-id="3" data-title="Heaney, Bayer and Huel" href="http://librarysystem.com/books/delete/3"><i class="fa fa-trash" aria-hidden="true"></i> Trash</a></td>
+                    </tr>
+                                        <tr>
+                        <td>4</td>
+                        <td> 
+                            <a data-toggle="modal" href="#bookDetailModal" 
+                            data-id="4" 
+                            data-book_title="Lemke, Schiller and Jacobi" 
+                            data-category_name="Felicita" 
+                            data-author_name="Deckow" 
+                            data-publisher_name="Mrs. Melissa Bradtke DVM" 
+                            data-isbn="14247" 
+                            data-edition="2" 
+                            data-copyright_year="2009" 
+                            data-source="Savannah Pacocha MD" 
+                            data-date_added="Dec. 12, 2018 - Wed  08:38:18 AM" 
+                            data-status="Available" 
+                            > 
+                            Lemke, Schiller and Jacobi
+                        </td>
+                        <td>Felicita</td>
+                        <td>Deckow</td>
+                        <td>Mrs. Melissa Bradtke DVM</td>
+                        <td>2009</td>
+                        <td>Savannah Pacocha MD</td>
+                        
+                        <td>Available</td>
+                        <td><a class="btn btn-sm btn-primary" href="http://librarysystem.com/books/edit/4"><i class="fa fa-edit"></i> Edit</a></td>
+                        <td><a class="btn btn-sm btn-danger" id="deleteBook" data-id="4" data-title="Lemke, Schiller and Jacobi" href="http://librarysystem.com/books/delete/4"><i class="fa fa-trash" aria-hidden="true"></i> Trash</a></td>
+                    </tr>
+                                        <tr>
+                        <td>5</td>
+                        <td> 
+                            <a data-toggle="modal" href="#bookDetailModal" 
+                            data-id="5" 
+                            data-book_title="Fisher-Trantow" 
+                            data-category_name="Jeff" 
+                            data-author_name="Daugherty" 
+                            data-publisher_name="Larissa Spencer" 
+                            data-isbn="17480" 
+                            data-edition="2" 
+                            data-copyright_year="1998" 
+                            data-source="Aric Treutel" 
+                            data-date_added="Dec. 12, 2018 - Wed  08:38:18 AM" 
+                            data-status="Available" 
+                            > 
+                            Fisher-Trantow
+                        </td>
+                        <td>Jeff</td>
+                        <td>Daugherty</td>
+                        <td>Larissa Spencer</td>
+                        <td>1998</td>
+                        <td>Aric Treutel</td>
+                        
+                        <td>Available</td>
+                        <td><a class="btn btn-sm btn-primary" href="http://librarysystem.com/books/edit/5"><i class="fa fa-edit"></i> Edit</a></td>
+                        <td><a class="btn btn-sm btn-danger" id="deleteBook" data-id="5" data-title="Fisher-Trantow" href="http://librarysystem.com/books/delete/5"><i class="fa fa-trash" aria-hidden="true"></i> Trash</a></td>
+                    </tr>
+                                        <tr>
+                        <td>6</td>
+                        <td> 
+                            <a data-toggle="modal" href="#bookDetailModal" 
+                            data-id="6" 
+                            data-book_title="Bradtke-Satterfield" 
+                            data-category_name="Jeff" 
+                            data-author_name="Jacobs" 
+                            data-publisher_name="Prof. Maida Harris V" 
+                            data-isbn="18173" 
+                            data-edition="2" 
+                            data-copyright_year="1995" 
+                            data-source="Ms. Mayra Beahan" 
+                            data-date_added="Dec. 12, 2018 - Wed  08:38:18 AM" 
+                            data-status="Available" 
+                            > 
+                            Bradtke-Satterfield
+                        </td>
+                        <td>Jeff</td>
+                        <td>Jacobs</td>
+                        <td>Prof. Maida Harris V</td>
+                        <td>1995</td>
+                        <td>Ms. Mayra Beahan</td>
+                        
+                        <td>Available</td>
+                        <td><a class="btn btn-sm btn-primary" href="http://librarysystem.com/books/edit/6"><i class="fa fa-edit"></i> Edit</a></td>
+                        <td><a class="btn btn-sm btn-danger" id="deleteBook" data-id="6" data-title="Bradtke-Satterfield" href="http://librarysystem.com/books/delete/6"><i class="fa fa-trash" aria-hidden="true"></i> Trash</a></td>
+                    </tr>
+                                        <tr>
+                        <td>7</td>
+                        <td> 
+                            <a data-toggle="modal" href="#bookDetailModal" 
+                            data-id="7" 
+                            data-book_title="Kling and Sons" 
+                            data-category_name="Felicita" 
+                            data-author_name="Beahan" 
+                            data-publisher_name="Zella Volkman" 
+                            data-isbn="11243" 
+                            data-edition="1" 
+                            data-copyright_year="2018" 
+                            data-source="Woodrow Hackett" 
+                            data-date_added="Dec. 12, 2018 - Wed  08:38:18 AM" 
+                            data-status="Available" 
+                            > 
+                            Kling and Sons
+                        </td>
+                        <td>Felicita</td>
+                        <td>Beahan</td>
+                        <td>Zella Volkman</td>
+                        <td>2018</td>
+                        <td>Woodrow Hackett</td>
+                        
+                        <td>Available</td>
+                        <td><a class="btn btn-sm btn-primary" href="http://librarysystem.com/books/edit/7"><i class="fa fa-edit"></i> Edit</a></td>
+                        <td><a class="btn btn-sm btn-danger" id="deleteBook" data-id="7" data-title="Kling and Sons" href="http://librarysystem.com/books/delete/7"><i class="fa fa-trash" aria-hidden="true"></i> Trash</a></td>
+                    </tr>
+                                        <tr>
+                        <td>8</td>
+                        <td> 
+                            <a data-toggle="modal" href="#bookDetailModal" 
+                            data-id="8" 
+                            data-book_title="Morissette, Windler and Abbott" 
+                            data-category_name="Jeff" 
+                            data-author_name="Beahan" 
+                            data-publisher_name="Prof. Jammie Beahan" 
+                            data-isbn="11202" 
+                            data-edition="2" 
+                            data-copyright_year="1988" 
+                            data-source="Mrs. Raphaelle Deckow" 
+                            data-date_added="Dec. 12, 2018 - Wed  08:38:18 AM" 
+                            data-status="Available" 
+                            > 
+                            Morissette, Windler and Abbott
+                        </td>
+                        <td>Jeff</td>
+                        <td>Beahan</td>
+                        <td>Prof. Jammie Beahan</td>
+                        <td>1988</td>
+                        <td>Mrs. Raphaelle Deckow</td>
+                        
+                        <td>Available</td>
+                        <td><a class="btn btn-sm btn-primary" href="http://librarysystem.com/books/edit/8"><i class="fa fa-edit"></i> Edit</a></td>
+                        <td><a class="btn btn-sm btn-danger" id="deleteBook" data-id="8" data-title="Morissette, Windler and Abbott" href="http://librarysystem.com/books/delete/8"><i class="fa fa-trash" aria-hidden="true"></i> Trash</a></td>
+                    </tr>
+                                                        </tbody>
+            </table>
+        </div>
+        <div class="d-flex justify-content-center" ><ul class="pagination" role="navigation">
+        
+                    <li class="page-item disabled" aria-disabled="true" aria-label="« Previous">
+                <span class="page-link" aria-hidden="true">&lsaquo;</span>
+            </li>
+        
+        
+                    
+            
+            
+                                                                        <li class="page-item active" aria-current="page"><span class="page-link">1</span></li>
+                                                                                <li class="page-item"><a class="page-link" href="http://librarysystem.com/books?page=2">2</a></li>
+                                                                                <li class="page-item"><a class="page-link" href="http://librarysystem.com/books?page=3">3</a></li>
+                                                                                <li class="page-item"><a class="page-link" href="http://librarysystem.com/books?page=4">4</a></li>
+                                                                                <li class="page-item"><a class="page-link" href="http://librarysystem.com/books?page=5">5</a></li>
+                                                                                <li class="page-item"><a class="page-link" href="http://librarysystem.com/books?page=6">6</a></li>
+                                                                                <li class="page-item"><a class="page-link" href="http://librarysystem.com/books?page=7">7</a></li>
+                                                        
+        
+                    <li class="page-item">
+                <a class="page-link" href="http://librarysystem.com/books?page=2" rel="next" aria-label="Next »">&rsaquo;</a>
+            </li>
+            </ul>
+</div> 
+    </div>
+</div>
+            
+            <div class="modal fade" id="authorModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Create New Author</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+            <form action="http://librarysystem.com/authors" method="POST">
+                <div class="modal-body">
+                    <input type="hidden" name="_token" value="6ryztuhUWARgmI8eI861nRwooqipcUdUABWG0En7">
+                    <div class="form-group">
+                        <label for="author_name">Author Name</label>
+                        <input type="text" name="author_name" class="form-control" autofocus>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-sm mr-auto" data-toggle="collapse" data-target="#showAuthor">Show All Authors <i class="fa fa-caret-down"></i></button>
+                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-sm btn-success">Create author</button>
+                </div>
+            </form>
+
+            <div class="container-fluid collapse" id="showAuthor">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="text-center">List of Authors</h2>
+                                                                            <li class="list-group-item">Daugherty</li>
+                                                    <li class="list-group-item">Deckow</li>
+                                                    <li class="list-group-item">Jacobs</li>
+                                                    <li class="list-group-item">Beahan</li>
+                                                                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+            <div class="modal fade" id="categoryModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Create New Category</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+            <form action="http://librarysystem.com/categories" method="POST">
+                <div class="modal-body">
+                    <input type="hidden" name="_token" value="6ryztuhUWARgmI8eI861nRwooqipcUdUABWG0En7">
+                    <div class="form-group">
+                        <label for="category_name">Category Name</label>
+                        <input type="text" name="category_name" class="form-control" autofocus>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-sm mr-auto" data-toggle="collapse" data-target="#showCategory">Show All Categories <i class="fa fa-caret-down"></i></button>
+                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-sm btn-success">Create category</button>
+                </div>
+            </form>
+
+            <div class="container-fluid collapse" id="showCategory">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="text-center">List of Categories</h2>
+                                                                            <li class="list-group-item">Brennan</li>
+                                                    <li class="list-group-item">Felicita</li>
+                                                    <li class="list-group-item">Jeff</li>
+                                                    <li class="list-group-item">Wilhelmine</li>
+                                                    <li class="list-group-item">Courtney</li>
+                                                    <li class="list-group-item">Erick</li>
+                                                    <li class="list-group-item">Mertie</li>
+                                                    <li class="list-group-item">Casey</li>
+                                                    <li class="list-group-item">Jayson</li>
+                                                    <li class="list-group-item">Misty</li>
+                                                                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+            <div class="modal fade" id="typesModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Create New Type of User</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+            <form action="http://librarysystem.com/types" method="POST">
+                <input type="hidden" name="_token" value="6ryztuhUWARgmI8eI861nRwooqipcUdUABWG0En7">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="user_type">Name</label>
+                        <input type="text" name="user_type" class="form-control" placeholder="eg. Librarian, Teacher, Student..." autofocus>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-sm mr-auto" data-toggle="collapse" data-target="#showTypes">Show All Types of User <i class="fa fa-caret-down"></i></button>
+                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-sm btn-success">Create type of user</button>
+                </div>
+            </form>
+
+            <div class="container-fluid collapse" id="showTypes">
+                <div class="card">
+                    <div class="card-body">
+                        <h4>Type of user</h4>
+                                                                        <ul class="list-group">
+                            <li class="list-group-item">Student</td>
+                        </ul>
+                                                <ul class="list-group">
+                            <li class="list-group-item">Librarian</td>
+                        </ul>
+                                                <ul class="list-group">
+                            <li class="list-group-item">Teacher</td>
+                        </ul>
+                                                <ul class="list-group">
+                            <li class="list-group-item">Others</td>
+                        </ul>
+                                                <ul class="list-group">
+                            <li class="list-group-item">Faculty Member</td>
+                        </ul>
+                                                                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            <div class="modal fade" id="yearLevelModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Create New Year level of User</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+            <form action="http://librarysystem.com/year_levels" method="POST">
+                <input type="hidden" name="_token" value="6ryztuhUWARgmI8eI861nRwooqipcUdUABWG0En7">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="year_level">Name</label>
+                        <input type="text" name="year_level" class="form-control" placeholder="eg. First Year, Second Year, Third Year..." autofocus>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-sm mr-auto" data-toggle="collapse" data-target="#showYearLevel">Show All Year Level <i class="fa fa-caret-down"></i></button>
+                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-sm btn-success">Create year level of user</button>
+                </div>
+            </form>
+
+            <div class="container-fluid collapse" id="showYearLevel">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="text-center">List of year levels</h5>
+                                                                        <ul class="list-group">
+                            <li class="list-group-item">First Year</li>
+                        </ul>
+                                                <ul class="list-group">
+                            <li class="list-group-item">Second Year</li>
+                        </ul>
+                                                <ul class="list-group">
+                            <li class="list-group-item">Third Year</li>
+                        </ul>
+                                                <ul class="list-group">
+                            <li class="list-group-item">Fourth Year</li>
+                        </ul>
+                                                <ul class="list-group">
+                            <li class="list-group-item">Fifth Year</li>
+                        </ul>
+                                                                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+            
+        </main>
+    </div>
+    
+    <script type="text/javascript">toastr.options = {"closeButton":false,"debug":false,"newestOnTop":false,"progressBar":false,"positionClass":"toast-top-right","preventDuplicates":false,"onclick":null,"showDuration":"300","hideDuration":"1000","timeOut":"5000","extendedTimeOut":"1000","showEasing":"swing","hideEasing":"linear","showMethod":"fadeIn","hideMethod":"fadeOut"};</script></body>
 </html>
