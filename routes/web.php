@@ -28,6 +28,9 @@ Route::get('/test', function () {
 
 });
 
+Auth::routes();
+
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -37,6 +40,7 @@ Route::get('/dashboard', [
     'as' => 'dashboard',
 ]);
 
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 Route::get('/attendance', [
     'uses' => 'AttendanceController@index',
     'as' => 'attendance',
@@ -130,8 +134,6 @@ Route::get('/categories/delete/{id}', [
     'as' => 'categories.delete',
 ]);
 
-
-
 Route::resource('types', 'TypeController');
 
 Route::get('/types/delete/{id}', [
@@ -174,5 +176,5 @@ Route::any('/search/books', [
     'as' => 'search.books',
 ]);
 
-Auth::routes();
+});
 
