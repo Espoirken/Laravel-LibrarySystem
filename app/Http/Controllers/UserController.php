@@ -19,16 +19,27 @@ class UserController extends Controller
     {
         $year_levels = YearLevel::all();
         $types = Type::all();
+        $users = User::all();
         if ($year_levels->count() == 0) {
-
-            toastr()->info('Please create a year level  first!');
-            return redirect('year_levels');
+            toastr()->info('Please create a year level first!');
+            return redirect('admin/year_levels');
         }
         if ($types->count() == 0) {
-
-            toastr()->info('Please create a type of user  first ');
-            return redirect()->back();
+            toastr()->info('Please create a type of user first ');
+            return redirect('admin/types');
         }
+        // foreach ($users as $key => $user) {
+        //     // dd($user);
+        //     // if ($user == $users[0]['type_id']== NULL){
+
+        //     // }
+        // }
+        // dd($users[0]['type_id']);
+        if ($users->count() == 0 || $users[0]['type_id']== NULL) {
+            toastr()->info('Please create a user first ');
+            return redirect('admin/users/create');
+        }
+
         return view('admin.users.index')->with('users', User::paginate(10))
                                         ->with('types', Type::find(1));
     }

@@ -46,7 +46,7 @@ class CategoryController extends Controller
         $categories->category_name = $request->category_name;
         $categories->save();
         toastr()->success('The category was saved successfully!');
-        return redirect('categories');
+        return redirect('admin/categories');
     }
 
     /**
@@ -106,6 +106,6 @@ class CategoryController extends Controller
 
         $categories->delete();
         toastr()->error('The category was deleted!');
-        return redirect('categories');
+        return redirect('admin/categories');
     }
 }

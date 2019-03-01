@@ -18,9 +18,12 @@
                         <div class="form-group">
                             <label for="category_id">Category</label>
                             <select class="form-control" name="category_id">
-                                <option value="{{$book->category->id}}">{{$book->category->category_name}}</option>
-                                @foreach ($books as $book)
-                                <option value="{{$book->category->id}}">{{$book->category->category_name}}</option>
+                                @foreach ($categories as $category)
+                                @if ($book->category->id == $category->id)
+                                <option value="{{$category->id}}" selected>{{$category->category_name}}</option>
+                                @else
+                                <option value="{{$category->id}}">{{$category->category_name}}</option>
+                                @endif
                                 @endforeach
                             </select>
                         </div>
@@ -43,6 +46,9 @@
                         <div class="form-group">
                             <label for="status">Status</label>
                             <select class="form-control" name="status">
+                            @if ($book->status == )
+                                
+                            @endif
                             <option value="{{$book->status}}">{{$book->status}}</option>
                             <option value="Available">Available</option>
                             <option value="Inactive">Borrowed</option>

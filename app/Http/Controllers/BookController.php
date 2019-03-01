@@ -22,7 +22,7 @@ class BookController extends Controller
         if ($categories->count() == 0) {
 
             toastr()->info('Please create a category first!');
-            return redirect('categories');
+            return redirect('admin/categories');
         }
         $books = Book::orderBy('id','asc')->paginate(8);
         return view('admin.books.index')->with('books', $books)
@@ -91,8 +91,10 @@ class BookController extends Controller
     {
         $book = Book::find($id);
         $books = Book::all();
+        $categories = Category::all();
         return view('admin.books.edit')->with('book', $book)
-                                        ->with('books', $books);
+                                        ->with('books', $books)
+                                        ->with('categories', $categories);
     }
 
     /**
@@ -202,7 +204,7 @@ class BookController extends Controller
         }
 
         return view('circulations.return')->with('books', $books)
-                                                ->with('users', User::all());
+                                            ->with('users', User::all());
     }
 
     public function return(Request $request){
