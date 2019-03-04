@@ -91,11 +91,9 @@ class BookController extends Controller
     public function edit($id)
     {
         $book = Book::find($id);
-        $books = Book::all();
         $categories = Category::all();
         $status = Status::all();
         return view('admin.books.edit')->with('book', $book)
-                                        ->with('books', $books)
                                         ->with('categories', $categories)
                                         ->with('statuses', $status);
     }
