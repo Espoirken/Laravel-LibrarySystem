@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Book;
 use App\User;
 use App\Category;
+use App\Status;
 
 class BookController extends Controller
 {
@@ -92,9 +93,11 @@ class BookController extends Controller
         $book = Book::find($id);
         $books = Book::all();
         $categories = Category::all();
+        $status = Status::all();
         return view('admin.books.edit')->with('book', $book)
                                         ->with('books', $books)
-                                        ->with('categories', $categories);
+                                        ->with('categories', $categories)
+                                        ->with('statuses', $status);
     }
 
     /**

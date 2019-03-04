@@ -12,6 +12,6 @@ $factory->define(App\Book::class, function (Faker $faker) {
         'author' => $faker->name,
         'publisher_name' => $faker->name,
         'copyright_year' => $faker->year,
-        'status' => 'Available',
+        'status' => $faker->randomElement(['Available', 'Borrowed', 'Weeded']),
     ];
 });

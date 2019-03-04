@@ -46,13 +46,13 @@
                         <div class="form-group">
                             <label for="status">Status</label>
                             <select class="form-control" name="status">
-                            @if ($book->status == )
-                                
-                            @endif
-                            <option value="{{$book->status}}">{{$book->status}}</option>
-                            <option value="Available">Available</option>
-                            <option value="Inactive">Borrowed</option>
-                            <option value="Weeded">Weeded</option>
+                                @foreach ($statuses as $status)
+                                @if ($status->name == $book->status)
+                                <option value="{{$status->name}}" selected>{{$status->name}}</option>
+                                @else
+                                <option value="{{$status->name}}">{{$status->name}}</option>
+                                @endif
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-group">

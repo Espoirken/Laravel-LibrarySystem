@@ -15,5 +15,6 @@ class UsersTableSeeder extends Seeder
         factory(App\Book::class, 50)->create();
         factory(App\Category::class, 10)->create();
         factory(App\Type::class, 6)->create();
+        factory(App\Status::class, 3)->create();
     }
 }
