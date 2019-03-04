@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 use App\Book;
 use App\User;
 use App\Category;
@@ -144,7 +145,7 @@ class BookController extends Controller
     }
 
     public function search(Request $request)
-    {        
+    {       
         $books = Book::whereHas('category', function ($query) use ($request) {
             $query->where('category_name', 'like', "%{$request->search}%");
         })
@@ -164,6 +165,11 @@ class BookController extends Controller
         //                                                  //
 
     public function borrow_index(){
+        $users = User::all();
+        $borrow_details = DB::table('book_user')->get();
+        foreach ($borrow_details as $key => $borrowed_book) {
+            $borrowed_book->user_id;
+        }
         $books = Book::all();
         $categories = Category::all();
         if ($books->count() == 0||$categories->count() == 0) {
@@ -173,17 +179,19 @@ class BookController extends Controller
         }
 
         return view('circulations.borrow')->with('books', $books)
-                                                ->with('users', User::all());
+                                                ->with('users', $users);
     }
     
     public function borrow(Request $request){
-        $user = User::where('id', $request->users)->first();
+        $user = User::where('id', $request->users);
         $books =  $request->books;
+        $counter = $user->first()->book_counter;
         foreach ($books as $key => $book) {
             Book::whereIn('id', [$book])->update(['status' => 'Borrowed']);
-            $user->books()->attach($book,['borrow_status' => 'Borrowed']);
+            $user->first()->books()->attach($book,['borrow_status' => 'Borrowed']);
+            $user->update(['book_counter' => ++$counter ]);
         }
-        toastr()->success('Post created successfully!');
+        toastr()->success('Book was borrowed successfully!');
         return redirect()->back();
     }
     

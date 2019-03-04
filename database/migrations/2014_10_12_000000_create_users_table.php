@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('password');
             $table->string('gender')->nullable();
+            $table->string('book_counter')->default(0);
             $table->string('address')->nullable();
             $table->string('contact')->nullable();
             $table->boolean('admin')->default(0);

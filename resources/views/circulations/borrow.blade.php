@@ -13,7 +13,9 @@
                         <select class="form-control" id="users" name="users">
                             <option hidden></option>
                             @foreach ($users as $user)
-                                <option value="{{$user->id}}">{{$user->name}}</option>
+                            @if ($user->book_counter < 3)
+                            <option value="{{$user->id}}">{{$user->name}}</option>
+                            @endif
                             @endforeach
                         </select>   
                     </div>
@@ -37,6 +39,8 @@
                     <tbody>
                         @if (count($books) > 0)
                         @foreach ($books as $book)
+                        @if ($book->status == 'Available')
+                            
                         <tr>
                             <td>{{$book->id}}</td>
                             <td>{{$book->book_title}}</td>
@@ -54,6 +58,7 @@
                                 </div>
                             </td>
                         </tr>
+                        @endif
                         @endforeach
                         @else
                             <tr>
