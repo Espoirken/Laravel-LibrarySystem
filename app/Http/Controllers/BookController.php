@@ -166,10 +166,6 @@ class BookController extends Controller
 
     public function borrow_index(){
         $users = User::all();
-        $borrow_details = DB::table('book_user')->get();
-        foreach ($borrow_details as $key => $borrowed_book) {
-            $borrowed_book->user_id;
-        }
         $books = Book::all();
         $categories = Category::all();
         if ($books->count() == 0||$categories->count() == 0) {

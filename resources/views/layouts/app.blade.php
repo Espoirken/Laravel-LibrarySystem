@@ -14,7 +14,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" ></script>
     @toastr_js
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.28.11/dist/sweetalert2.all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.all.min.js"></script>
+    
     <!-- Select 2 searching-->
     <script type="text/javascript">
         $(document).ready(function() {
@@ -222,7 +223,7 @@
                 preConfirm: function() {
                   return new Promise(function(resolve) {
                      $.ajax({
-                        url: '/users/delete/'+userId,
+                        url: '/admin/users/delete/'+userId,
                         type: 'GET',
                      })
                      .done(function(){
@@ -234,7 +235,7 @@
                         window.setTimeout(function(){location.reload()},700)
                      })
                      .fail(function(){
-			     	swal('Oops...', 'Cannot delete the book!', 'error');
+			     	swal('Oops...', 'Cannot delete the user!', 'error');
 			        });
                   });
                 },

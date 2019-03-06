@@ -154,7 +154,7 @@ class UserController extends Controller
     {
         $users = User::find($id);
         $users->delete();
-        return redirect('users');
+        return redirect('admin/users');
     }
 
 //     public function search($searchKey){
