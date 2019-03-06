@@ -275,7 +275,7 @@
                 preConfirm: function() {
                   return new Promise(function(resolve) {
                      $.ajax({
-                        url: '/books/delete/'+bookId,
+                        url: '/admin/books/delete/'+bookId,
                         type: 'GET',
                      })
                      .done(function(){
